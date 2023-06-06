@@ -104,12 +104,13 @@ Note: Contrary to storm.sbw, storm.tor_plot supports date ranges throughout mult
 
 Example creation of the spc_plot.day1_2_outlook object to plot the Day 1 45% tornado risk day in the Southeast domain in March of 2021.
 
-    from wedgj.spc_plot import day1_2_outlook
+    from wedgj import spc_plot
+    rdr = spc_plot.
     day1_2_outlook(date = datetime(2021,3,17,16,30), domain = 'Southeast', outlook_day = 'day1')
 
 Example creation of the storm.sbw object to plot all tornado warnings in CONUS in the year 2019.
-
-    from wedgj.storm import sbw
-    sbw(start_date = datetime(2019 ,1, 1, 0, 0), end_date = datetime(2019, 12, 31, 23, 59), warn_type = 'TOR')
+    from wedgj import storm
+    rdr = storm.storm()
+    rdr.sbw(start_date = datetime(2019,1,1,0,0), end_date = datetime(2019,12,31,23,59), warn_type = 'TOR')
     
     
