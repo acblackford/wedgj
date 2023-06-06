@@ -5,7 +5,7 @@ with open("README.txt", "r") as fn:
 
 setuptools.setup(
     name="wedgj",
-    version="1.1.0",
+    version="0.1.0",
     author="Andrew Blackford of UAH, Huntsville, Alabama",
     author_email="acblackford@hotmail.com",
     description="A comprehensive python package containing useful functions for reading in and displaying publicly available severe weather-related data.",
@@ -20,4 +20,5 @@ setuptools.setup(
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
     python_requires='>=3.0',
+    install_requires=["metpy>=1.0", "numpy", "geopandas<0.13.1", "cartopy", "matplotlib"]
 )
