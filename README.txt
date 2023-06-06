@@ -113,6 +113,7 @@ Example creation of the spc_plot.day1_2_outlook object to plot the Day 1 45% tor
     rdr.day1_2_outlook(date = datetime(2021,3,17,16,30), domain = 'Southeast', outlook_day = 'day1')
 
 Example creation of the storm.sbw object to plot all tornado warnings in CONUS in the year 2019.
+
     import wedgj.storm as storm
    
    #Import other dependency for setting archive dates:
