@@ -204,7 +204,7 @@ class storm:
             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
             warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
             warns_gdf_yrs.append(warns_gdf)
-        else:
+        except:
            raise ValueError('Multi-year selection failed.')
       else:
           link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(start_date.strftime("%Y"))
