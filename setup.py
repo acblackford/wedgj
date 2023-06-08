@@ -20,5 +20,5 @@ setuptools.setup(
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
     python_requires='>=3.0',
-    install_requires=["metpy>=1.0", "numpy", "geopandas<0.13.1", "cartopy", "matplotlib"]
+    install_requires=["metpy>=1.0", "numpy", "geopandas<0.13.1", "cartopy>=0.21.0", "matplotlib"]
 )
