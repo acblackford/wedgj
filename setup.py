@@ -5,7 +5,7 @@ with open("README.txt", "r") as fn:
 
 setuptools.setup(
     name="wedgj",
-    version="0.1.0",
+    version="0.2.0",
     author="Andrew Blackford of UAH, Huntsville, Alabama",
     author_email="acblackford@hotmail.com",
     description="A comprehensive python package containing useful functions for reading in and displaying publicly available severe weather-related data.",
