@@ -22,7 +22,8 @@ setuptools.setup(
     python_requires='>=3.0',
     install_requires=["metpy>=1.0", 
                       "numpy", 
-                      "geopandas<0.13.1", 
-                      "--use-deprecated=legacy-resolver cartopy>=0.21.0",
+                      "geopandas<0.13.1",
+                      "shapely>=2.0.0",
+                      "cartopy>=0.21.0",
                       "matplotlib"]
 )
