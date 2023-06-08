@@ -193,13 +193,14 @@ class storm:
       ### Get Data:
       
       #Check if selection is multi-year or single year:
-      warns_gdf = []
+      
       if end_date.year - start_date.year >= 1:
         years = range(start_date.year, end_date.year + 1, 1)
+        warns_gdf = []
         
         try:
           for year in years():
-            link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year)
+            link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year.strftime("%Y"))
             warns = gpd.read_file(link)
             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
             warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
