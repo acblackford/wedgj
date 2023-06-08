@@ -288,7 +288,7 @@ class spc_plot:
 
       for country in countries:
           if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries(country.geometry, ccrs.crs.PlateCarree(),
+              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
                                 facecolor=(1, 0.87, 0.75),
                                 label=country.attributes['ADMIN'])
           else:
@@ -463,7 +463,7 @@ class spc_plot:
 
       for country in countries:
           if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries(country.geometry, ccrs.crs.PlateCarree(),
+              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
                                 facecolor=(1, 0.87, 0.75),
                                 label=country.attributes['ADMIN'])
           else:
@@ -584,7 +584,7 @@ class spc_plot:
 
       for country in countries:
           if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries(country.geometry, ccrs.crs.PlateCarree(),
+              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
                                 facecolor=(1, 0.87, 0.75),
                                 label=country.attributes['ADMIN'])
           else:
