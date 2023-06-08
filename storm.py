@@ -336,9 +336,8 @@ class storm:
 
         oh_cities_labels = [Dayton['address'][0], Cincinnati['address'][0], Columbus['address'][0], Cleveland['address'][0], Toledo['address'][0], Akron['address'][0]]
         ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
-        #for i , txt in enumerate(oh_cities_labels):
-          #ax.annotate(txt, oh_x[i], oh_y[i], textcoords="offset points", xytext=(3,3), ha='center')   
-        ax.plot(oh_cities, oh_cities_labels)
+        for i , txt in enumerate(oh_cities_labels):
+          ax.annotate(txt, oh_x[i], oh_y[i], textcoords="offset points", ha='center')   
 
       shpfilename = shpreader.natural_earth(resolution='110m',
                                           category='cultural',
