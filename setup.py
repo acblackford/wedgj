@@ -23,7 +23,7 @@ setuptools.setup(
     install_requires=["metpy>=1.0", 
                       "numpy", 
                       "geopandas<0.13.1",
-                      "shapely>=2.0.0",
+                      "setuptools",
                       "cartopy>=0.21.0",
                       "matplotlib"]
 )
