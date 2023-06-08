@@ -181,9 +181,9 @@ class storm:
   def sbw(self, start_date = None, end_date = None, spath = None, domain = 'CONUS', warn_type = 'All'):
 
       if start_date == None:
-        start_date = self.date - timedelta(days = 1)
+        start_date = self.date - timedelta(days = 1, hours = 12)
       if end_date == None:
-        end_date = self.date
+        end_date = self.date - timedelta(hours = 12)
       if start_date.year < 2002:
         raise ValueError('Input start_year must be 2002 or later.')
 
@@ -195,7 +195,7 @@ class storm:
       #Check if selection is multi-year or single year:
       
       if end_date.year - start_date.year >= 1:
-        years = range(start_date.year, end_date.year + 1, 1)
+        years = np.arange(start_date.year, end_date.year + 1, 1)
         warns_gdf = []
         
         try:
