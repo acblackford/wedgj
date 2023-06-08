@@ -335,10 +335,16 @@ class storm:
         oh_y = [point.y for point in oh_cities]
 
         oh_cities_labels = [Dayton['address'][0], Cincinnati['address'][0], Columbus['address'][0], Cleveland['address'][0], Toledo['address'][0], Akron['address'][0]]
-        ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
+        cities = ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
         for i , txt in enumerate(oh_cities_labels):
-          ax.annotate(txt, oh_x[i], oh_y[i], textcoords="offset points", ha='center')   
-
+  
+        for oh_cities_labels, cities in zip(zip(oh_x, oh_y), cities):
+            ax.annotate(f'{oh_cities_labels}',
+                        xy=(oh_x, oh_y),
+                        xytext=(3, 3),
+                        textcoords='offset points',
+                        ha='center', va='center')
+          
       shpfilename = shpreader.natural_earth(resolution='110m',
                                           category='cultural',
                                           name='admin_0_countries')
