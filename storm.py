@@ -194,8 +194,8 @@ class storm:
       
       #Check if selection is multi-year or single year:
       warns_gdf = []
-      if end_date.year() - start_date.year() >= 1:
-        years = range(start_date.year(), end_date.year() + 1, 1)
+      if end_date.year - start_date.year >= 1:
+        years = range(start_date.year, end_date.year + 1, 1)
         
         try:
           for year in years():
