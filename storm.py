@@ -335,8 +335,9 @@ class storm:
         oh_y = [point.y for point in oh_cities]
 
         oh_cities_labels = [Dayton['address'][0], Cincinnati['address'][0]]
-        ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), label = oh_cities_labels, zorder = 10)
-        #ax.annotate(oh_cities_labels, (oh_x, oh_y), textcoords="offset points", xytext=(3,3), ha='center')   
+        ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
+        fir i in len(oh_cities_labels):
+          ax.annotate(oh_cities_labels, oh_x[i], oh_y[i], textcoords="offset points", xytext=(3,3), ha='center')   
 
 
       shpfilename = shpreader.natural_earth(resolution='110m',
