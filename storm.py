@@ -9,6 +9,7 @@ import cartopy.io.shapereader as shpreader
 import geopandas as gpd 
 import matplotlib.patches as mpatches
 import pandas as pd
+import warnings
 
 ###########################################
 #                                         #
@@ -27,7 +28,10 @@ class storm:
 
     if date == None:
       date = self.date
-
+      
+    #Ignore download warnings for cartopy shapefiles:
+    warnings.filterwarnings("ignore")
+    
     ### Get Data:
     tornado_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_torn.csv')
     wind_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_wind.csv')
@@ -183,13 +187,31 @@ class storm:
       if start_date.year < 2002:
         raise ValueError('Input start_year must be 2002 or later.')
 
+      #Ignore download warnings for cartopy shapefiles:
+      warnings.filterwarnings("ignore")
+      
       ### Get Data:
-
-      link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(start_date.strftime("%Y"))
-      warns = gpd.read_file(link)
-      warns_gdf = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
-      warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
-
+      
+      #Check if selection is multi-year or single year:
+      warns_gdf = []
+      if end_date.year() - start_date.year() >= 1:
+        years = range(start_date.year(), end_date.year() + 1, 1)
+        
+        try:
+          for year in years():
+            link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year)
+            warns = gpd.read_file(link)
+            warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
+            warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
+            warns_gdf_yrs.append(warns_gdf)
+        else:
+           raise ValueError('Multi-year selection failed.')
+      else:
+          link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(start_date.strftime("%Y"))
+          warns = gpd.read_file(link)
+          warns_gdf = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
+          warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
+            
       #Define each type of warning:
       tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & (warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M'))]
       flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M')))]
@@ -359,6 +381,9 @@ class storm:
       if end_date.year > 2022:
         raise ValueError('Input end_year must be 2022 or earlier.')
 
+      #Ignore download warnings for cartopy shapefiles:
+      warnings.filterwarnings("ignore")
+        
       ### Get Data:
       tor_paths = "https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2022-torn-aspath.zip!1950-2022-torn-aspath/1950-2022-torn-aspath.shp"
       tor_pts = "https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2022-torn-initpoint.zip!1950-2022-torn-initpoint/1950-2022-torn-initpoint.shp"
