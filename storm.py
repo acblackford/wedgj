@@ -376,12 +376,8 @@ class storm:
   ###---------Tornado Path Function---------###
 
 
-  def tor_plot(self, start_date = None, end_date = None, spath = None, domain = 'CONUS', tor_type = 'Both', rating = 'All'):
+  def tor_plot(self, start_date, end_date, spath = None, domain = 'CONUS', tor_type = 'Both', rating = 'All'):
 
-      if start_date == None:
-        start_date = datetime(1950,1,1)
-      if end_date == None:
-        end_date = datetime(2022,12,31)
       if start_date.year < 1950:
         raise ValueError('Input start_year must be 1950 or later.')
       if end_date.year > 2022:
@@ -395,9 +391,11 @@ class storm:
       tor_pts = "https://www.spc.noaa.gov/gis/svrgis/zipped/1950-2022-torn-initpoint.zip!1950-2022-torn-initpoint/1950-2022-torn-initpoint.shp"
       tor_paths = gpd.read_file(tor_paths)
       tor_pts = gpd.read_file(tor_pts)
-      tor_paths_gdf = gpd.GeoDataFrame(tor_paths, geometry=tor_paths['geometry'], crs=4326)
-      tor_pts_gdf = gpd.GeoDataFrame(tor_pts, geometry=tor_pts['geometry'], crs=4326)
-
+      tor_paths_gdf = gpd.GeoDataFrame(tor_paths, geometry=tor_paths['geometry'])
+      tor_paths_gdf.set_crs(4326, allow_override=True)
+      tor_pts_gdf = gpd.GeoDataFrame(tor_pts, geometry=tor_pts['geometry'])
+      tor_pts_gdf.set_crs(4326, allow_override=True)
+      
       tor_paths_gdf['date'] = tor_paths_gdf['date'].astype('datetime64')
       tor_pts_gdf['date'] = tor_pts_gdf['date'].astype('datetime64')
 
