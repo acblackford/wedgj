@@ -196,15 +196,15 @@ class storm:
       
       if end_date.year - start_date.year >= 1:
         years = np.arange(start_date.year, end_date.year + 1, 1)
-        warns_gdf = []
+        warns_gdf = gpd.GeoDataFrame()
         
         try:
-          for year in years():
-            link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year.strftime("%Y"))
-            warns = gpd.read_file(link)
-            warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
-            warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
-            warns_gdf_yrs.append(warns_gdf)
+           for year in years:
+             link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year)
+             warns = gpd.read_file(link)
+             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
+             warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
+             warns_gdf = pd.concat([warns_gdf_yrs, warns_gdf])
         except:
            raise ValueError('Multi-year selection failed.')
       else:
