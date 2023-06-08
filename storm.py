@@ -199,7 +199,7 @@ class storm:
         warns_gdf = []
         
         try:
-          for year in years():
+          for year in years:
             link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year.strftime("%Y"))
             warns = gpd.read_file(link)
             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
