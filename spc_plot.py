@@ -7,6 +7,7 @@ from  datetime import datetime
 import cartopy.io.shapereader as shpreader
 import geopandas as gpd 
 import matplotlib.patches as mpatches
+import warnings
 
 ###########################################
 #                                         #
@@ -25,7 +26,7 @@ class spc_plot:
 
     if date == None:
       date = self.date
-
+    
     #Set dictionary for outlook day label:
     ### BEGIN OPTIONS ###
     var = outlook_day
@@ -33,6 +34,9 @@ class spc_plot:
 
     var_label = {'day1':'Day 1', 'day2':'Day 2'}
 
+    #Ignore download warnings for cartopy shapefiles:
+    warnings.filterwarnings("ignore")
+    
     ### Get Data ###
 
     # Build the SPC url:
@@ -309,7 +313,10 @@ class spc_plot:
 
     if date == None:
       date = self.date
-
+      
+    #Ignore download warnings for cartopy shapefiles:
+    warnings.filterwarnings("ignore")
+    
     ### Get Data ###
 
     # Build the SPC url:
@@ -485,6 +492,9 @@ class spc_plot:
     if date == None:
       date = self.date
 
+    #Ignore download warnings for cartopy shapefiles:
+    warnings.filterwarnings("ignore")
+      
     ### Get Data:
     d4 = gpd.read_file('https://www.spc.noaa.gov/products/exper/day4-8/archive/{}/day4prob_{}.lyr.geojson'.format(date.year, date.strftime("%Y%m%d")))
     d4_gdf = gpd.GeoDataFrame(d4, geometry=d4['geometry'], crs=4326)
