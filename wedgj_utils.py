@@ -18,12 +18,14 @@ import warnings
 ######################################
 
 def extent_table(self):
-    self.extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
+    extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
                     'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
                     'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
                     'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
                     'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
                     'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+                    
+    return extent_table
 
 ######------ figsize_table ------######
 # figsize_table returns a list of     # 
@@ -32,12 +34,14 @@ def extent_table(self):
 #######################################
 
 def figsize_table(self):
-    self.figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
+    figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
               'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
               'Northern Plains': (7,11), 'Northwest': (11,9),
               'Southwest': (11.5,11), 'Ohio': (7.5,12),
               'Indiana': (7.5,12.5), 'Alabama': (9,12),
               'CONUS': (15,13)}
+    
+    return figsize_table
 
 ######------ add_geog_ref ------######
 # add_geog_ref adds and formats all  # 
