@@ -2,7 +2,6 @@
 import matplotlib.pyplot as plt
 import cartopy as ccrs
 import cartopy.feature as cfeature
-from metpy.plots import USCOUNTIES
 from  datetime import datetime
 import cartopy.io.shapereader as shpreader
 import geopandas as gpd 
@@ -268,7 +267,7 @@ class spc_plot:
         print('Invalid Domain Input. Setting extent to CONUS.')
       #Add counties if not CONUS:
       if domain != 'CONUS':
-        ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
+        wedgj_utils.plot_counties(self, ax)
 
       #Add cartopy boundaries:
       wedgj_utils.add_geog_ref(self, ax)
@@ -417,7 +416,7 @@ class spc_plot:
         
       #Add counties if not CONUS:
       if domain != 'CONUS':
-        ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
+        wedgj_utils.plot_counties(self, ax)
       
       #Add cartopy boundaries:
       wedgj_utils.add_geog_ref(self, ax)
@@ -515,7 +514,7 @@ class spc_plot:
         print('Invalid Domain Input. Setting extent to CONUS.')
       #Add counties if not CONUS:
       if domain != 'CONUS':
-        ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
+        wedgj_utils.plot_counties(self, ax)
       
       #Add cartopy boundaries:
       wedgj_utils.add_geog_ref(self, ax)
