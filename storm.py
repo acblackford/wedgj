@@ -273,13 +273,7 @@ class storm:
 
       #Add counties if not CONUS:
       if domain != 'CONUS':
-        reader = shpreader.Reader('wedgj/Shapefiles/US_Counties/US_Counties.shp')
-
-        county = list(reader.geometries())
-        county_lines = cfeature.ShapelyFeature(county, ccrs.crs.PlateCarree())
-
-
-        ax.add_feature(county_lines, lw = 0.1, edgecolor = 'black')
+        wedgj_utils.plot_counties(self, ax)
       
       #Add cities to state plots:
       if domain == 'Ohio':
