@@ -15,7 +15,6 @@ Required modules for complete functionality are:
 - cartopy
 - Numpy
 - Matplotlib
-- metpy (future updates will not require metpy, as it is only used for a county shapefile at this time)
 
 Valid domain inputs for mapping that are supported at this time for wedgj are:
 - CONUS
@@ -85,7 +84,6 @@ spath (string, path to save the figure if desired)
 domain (string, from the above list)
 warn_type (string, options are: 'All', 'TOR', 'SVR', and 'FFW')
 
-Note: storm.sbw currently only supports date ranges within the same calendar year. The next update to wedgj will include multi-year functionality.
 
 The function tor_plot can take the following inputs:
 
@@ -102,6 +100,8 @@ Note: Contrary to storm.sbw, storm.tor_plot supports date ranges throughout mult
 
 ------------------------------------------EXAMPLES------------------------------------------
 
+***See Examples folder for a notebook of examples***
+
 Example creation of the spc_plot.day1_2_outlook object to plot the Day 1 45% tornado risk day in the Southeast domain in March of 2021.
 
     import wedgj.spc_plot as outlook
@@ -116,7 +116,7 @@ Example creation of the storm.sbw object to plot all tornado warnings in CONUS i
 
     import wedgj.storm as storm
    
-   #Import other dependency for setting archive dates:
+    #Import other dependency for setting archive dates:
     from datetime import datetime, timedelta
 
     rdr = storm.storm()
