@@ -124,7 +124,7 @@ class spc_plot:
     try:
       cat_gdf.loc[[5],'geometry'].plot(ax = ax[0,0], color = cat_gdf.loc[[5],'fill'], edgecolor = cat_gdf.loc[[5],'stroke'])
     except:
-      pass
+      ax[0,0].text(0.5, 0.5, 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[0,0].TransAxes)
 
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = '#C1E9C1', label = 'TSTM', edgecolor='#55BB55')
@@ -167,7 +167,8 @@ class spc_plot:
     try:
       sigtor_gdf.loc[[0],'geometry'].plot(ax = ax[0,1], color = 'None', edgecolor = sigtor_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      pass
+      ax[0,1].text(0.5, 0.5, 'Less Than 2% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[0,1].TransAxes)
+
 
     #Add tornado legend:
     patch_tor2  = mpatches.Patch(facecolor = '#66A366', label = '2%', edgecolor='#005500')
@@ -204,7 +205,8 @@ class spc_plot:
     try:
       sigwind_gdf.loc[[0],'geometry'].plot(ax = ax[1,0], color = 'None', edgecolor = sigwind_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      pass
+      ax[1,0].text(0.5, 0.5, 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[1,0].TransAxes)
+
 
     #Add wind legend:
     patch_wind5  = mpatches.Patch(facecolor = '#9d4e15', label = '5%', edgecolor='#70380f')
@@ -239,7 +241,8 @@ class spc_plot:
     try:
       sighail_gdf.loc[[0],'geometry'].plot(ax = ax[1,1], color = 'None', edgecolor = sighail_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      pass
+      ax[1,1].text(0.5, 0.5, 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[1,1].TransAxes)
+
 
     #Add hail legend (same colormap as wind):
     ax[1,1].legend(handles = [patch_wind5, patch_wind15, patch_wind30, patch_wind45, patch_wind60, patch_sigwind], loc = (0.01,0.01), ncol = 3, fontsize = 8)
