@@ -500,8 +500,8 @@ class storm:
             pass
         elif rating == 'INJ':        
           try:
-            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors["F{0}".format(tor_paths_FAT['mag'].iloc[0])], lw = 2.5)
-            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color = tor_colors["F{0}".format(tor_paths_FAT['mag'].iloc[0])], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors["F{0}".format(tor_paths_INJ['mag'].iloc[0])], lw = 2.5)
+            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color = tor_colors["F{0}".format(tor_paths_INJ['mag'].iloc[0])], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass                                                                        
         elif rating =='UNK':
@@ -610,7 +610,7 @@ class storm:
             pass
         elif rating == 'INJ':        
           try:
-            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors["F{0}".format(tor_paths_FAT['mag'].iloc[0])], lw = 2.5)
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors["F{0}".format(tor_paths_INJ['mag'].iloc[0])], lw = 2.5)
           except:
             pass                                                                              
         elif rating =='UNK':
@@ -712,7 +712,7 @@ class storm:
             pass
         elif rating == 'INJ':        
           try:
-            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color = tor_colors["F{0}".format(tor_paths_FAT['mag'].iloc[0])], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
+            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color = tor_colors["F{0}".format(tor_paths_INJ['mag'].iloc[0])], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass                                                                              
         elif rating =='UNK':
