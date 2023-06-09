@@ -5,7 +5,7 @@ Wedgj is a comprehensive package that allows users to explore different types of
 Any questions or suggestions should be directed to Andrew Blackford at acb0068@uah.edu .
 
 Written by Andrew Blackford
-Atmopsheric and Earth Science Department
+Atmospheric and Earth Science Department
 University of Alabama in Huntsville, June 2023
 
 Required modules for complete functionality are:
