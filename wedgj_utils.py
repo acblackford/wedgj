@@ -11,6 +11,34 @@ import matplotlib.patches as mpatches
 import pandas as pd
 import warnings
 
+######------ extent_table ------######
+# extent_table returns a list of     # 
+# pre-determined extent coordinates  #
+# for each valid domain input        #
+######################################
+
+def extent_table(self):
+    self.extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
+                    'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
+                    'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
+                    'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
+                    'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
+                    'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+
+######------ figsize_table ------######
+# figsize_table returns a list of     # 
+# pre-determined best-fit figsizes    #
+# for each valid domain input         #
+#######################################
+
+def figsize_table(self):
+    self.figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
+              'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
+              'Northern Plains': (7,11), 'Northwest': (11,9),
+              'Southwest': (11.5,11), 'Ohio': (7.5,12),
+              'Indiana': (7.5,12.5), 'Alabama': (9,12),
+              'CONUS': (15,13)}
+
 ######------ add_geog_ref ------######
 # add_geog_ref adds and formats all  # 
 # desired cartopy boundaries to the  #
@@ -97,18 +125,17 @@ def plot_in_cities(self, ax):
 
 def plot_al_cities(self, ax):
     Huntsville = gpd.tools.geocode('Huntsville, AL')
-    Decatur = gpd.tools.geocode('Decatur, AL')
     Tuscaloosa = gpd.tools.geocode('Tuscaloosa, AL')
     Birmingham = gpd.tools.geocode('Birmingham, AL')
     Montgomery = gpd.tools.geocode('Montgomery, AL')
     Dothan = gpd.tools.geocode('Dothan, AL')
     Mobile = gpd.tools.geocode('Mobile, AL')
 
-    al_cities = [Huntsville['geometry'][0], Decatur['geometry'][0], Tuscaloosa['geometry'][0], Birmingham['geometry'][0], Montgomery['geometry'][0], Dothan['geometry'][0], Mobile['geometry'][0]]
+    al_cities = [Huntsville['geometry'][0], Tuscaloosa['geometry'][0], Birmingham['geometry'][0], Montgomery['geometry'][0], Dothan['geometry'][0], Mobile['geometry'][0]]
     al_x = [point.x for point in al_cities]
     al_y = [point.y for point in al_cities]
 
-    al_cities_labels = [Huntsville['address'][0].split(',')[0], Decatur['address'][0].split(',')[0], Tuscaloosa['address'][0].split(',')[0], Birmingham['address'][0].split(',')[0], Montgomery['address'][0].split(',')[0], Dothan['address'][0].split(',')[0],  Mobile['address'][0].split(',')[0]]
+    al_cities_labels = [Huntsville['address'][0].split(',')[0], Tuscaloosa['address'][0].split(',')[0], Birmingham['address'][0].split(',')[0], Montgomery['address'][0].split(',')[0], Dothan['address'][0].split(',')[0],  Mobile['address'][0].split(',')[0]]
     ax.scatter(al_x, al_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
 
     for i in range(len(al_x)):

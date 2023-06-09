@@ -68,7 +68,7 @@ class spc_plot:
           date = date.replace(hour = 6)
           date = date.replace(minute = 0)   
     else:
-      print('Invalid outlook_day passed.')
+      raise ValueError('Invalid outlook_day passed.')
 
 
     #Link to the data and push into geodataframes:
@@ -96,13 +96,7 @@ class spc_plot:
     sighail = gpd.read_file('https://www.spc.noaa.gov/products/outlook/archive/{}/{}otlk_{}_{}_sighail.lyr.geojson'.format(date.year, outlook_day, date.strftime("%Y%m%d"), date.strftime("%H%M")))
     sighail_gdf = gpd.GeoDataFrame(sighail, geometry=sighail['geometry'], crs=4326)
 
-    #Determing figsize by domain input:
-    figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
-              'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
-              'Northern Plains': (7,11), 'Northwest': (11,9),
-              'Southwest': (11.5,11), 'Ohio': (7.5,12),
-              'Indiana': (7.5,12.5), 'Alabama': (9,12),
-              'CONUS': (15,13)}
+    figsize_table = wedgj_utils.figsize_table(self)
 
     #Plot the figure:
     fig, ax = plt.subplots(figsize = (16,12), ncols = 2, nrows = 2, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
@@ -264,12 +258,7 @@ class spc_plot:
     #Add cartopy boundaries:
     for ax in plot_loc:
       #Determine extent:
-      extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
-                      'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
-                      'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                      'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                      'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                      'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+      extent_table = wedgj_utils.extent_table(self)
 
       #Add cartopy boundaries::
       try:
@@ -281,25 +270,8 @@ class spc_plot:
       if domain != 'CONUS':
         ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
 
-      shpfilename = shpreader.natural_earth(resolution='110m',
-                                          category='cultural',
-                                          name='admin_0_countries')
-      reader = shpreader.Reader(shpfilename)
-      countries = reader.records()
-
-      for country in countries:
-          if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                                facecolor=(1, 0.87, 0.75),
-                                label=country.attributes['ADMIN'])
-          else:
-              pass
-
-      ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.STATES, lw = 0.5)
-      ax.add_feature(cfeature.BORDERS, lw = 0.5)
-      ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+      #Add cartopy boundaries:
+      wedgj_utils.add_geog_ref(self, ax)
 
     plt.tight_layout()
 
@@ -347,14 +319,9 @@ class spc_plot:
         sigprob = gpd.read_file('https://www.spc.noaa.gov/products/outlook/archive/{}/day3otlk_{}_0830_sigprob.lyr.geojson'.format(date.year, date.strftime("%Y%m%d")))
         sigprob_gdf = gpd.GeoDataFrame(sigprob, geometry=sigprob['geometry'], crs=4326)
       except:
-        print('Invalid date. Request failed.')
+        raise ValueError('Invalid date. Request failed.')
 
-    figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
-              'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
-              'Northern Plains': (7,11), 'Northwest': (11,9),
-              'Southwest': (11.5,11), 'Ohio': (7.5,12),
-              'Indiana': (7.5,12.5), 'Alabama': (9,12),
-              'CONUS': (15,13)}
+    figsize_table = wedgj_utils.figsize_table(self)
 
     #Plot the figure:
     fig, (ax0, ax1) = plt.subplots(figsize = ((figsize_table[domain][0]*2), figsize_table[domain][1]), ncols = 2, nrows = 1, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
@@ -439,12 +406,7 @@ class spc_plot:
     #Add cartopy boundaries:
     for ax in plot_loc:
       #Determine extent:
-      extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
-                      'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
-                      'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                      'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                      'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                      'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+      extent_table = wedgj_utils.extent_table(self)
 
       #Add cartopy boundaries::
       try:
@@ -452,29 +414,13 @@ class spc_plot:
       except:
         ax.set_extent(extent_table['CONUS'])
         print('Invalid Domain Input. Setting extent to CONUS.')
+        
       #Add counties if not CONUS:
       if domain != 'CONUS':
         ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
       
-      shpfilename = shpreader.natural_earth(resolution='110m',
-                                          category='cultural',
-                                          name='admin_0_countries')
-      reader = shpreader.Reader(shpfilename)
-      countries = reader.records()
-
-      for country in countries:
-          if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                                facecolor=(1, 0.87, 0.75),
-                                label=country.attributes['ADMIN'])
-          else:
-              pass
-
-      ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.STATES, lw = 0.5)
-      ax.add_feature(cfeature.BORDERS, lw = 0.5)
-      ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+      #Add cartopy boundaries:
+      wedgj_utils.add_geog_ref(self, ax)
 
     plt.tight_layout()
     ax0.text(-0.01, 1.1, 'SPC Day 3 Outlook: {} Domain (Valid {})'.format(domain, date.strftime("%Y%m%d")), fontweight = 'bold', fontsize = 18, ha='center', va='center', transform=ax.transAxes)
@@ -556,12 +502,7 @@ class spc_plot:
     #Add cartopy boundaries:
     for ax in plot_loc:
       #Determine extent:
-      extent_table = {'Midwest': (-97.2, -80.27, 36.98, 49.64), 'Northeast': (-84.93, -66.21, 36.29, 47.68), 
-                      'Southeast': (-95.39, -75.17, 24.50, 37.35), 'Southern Plains': (-106.55, -93.34, 24.94, 40.38), 
-                      'Northern Plains': (-106.71, -94.14, 39.65, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                      'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                      'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                      'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+      extent_table = wedgj_utils.extent_table(self)
 
       #Set aspect ratio:
       ax.set_aspect(1.1)
@@ -576,26 +517,8 @@ class spc_plot:
       if domain != 'CONUS':
         ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
       
-
-      shpfilename = shpreader.natural_earth(resolution='110m',
-                                          category='cultural',
-                                          name='admin_0_countries')
-      reader = shpreader.Reader(shpfilename)
-      countries = reader.records()
-
-      for country in countries:
-          if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                                facecolor=(1, 0.87, 0.75),
-                                label=country.attributes['ADMIN'])
-          else:
-              pass
-
-      ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.STATES, lw = 0.5)
-      ax.add_feature(cfeature.BORDERS, lw = 0.5)
-      ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+      #Add cartopy boundaries:
+      wedgj_utils.add_geog_ref(self, ax)
 
     plt.tight_layout()
 

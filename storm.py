@@ -38,24 +38,12 @@ class storm:
     wind_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_wind.csv')
     hail_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_hail.csv')
 
-    #Get figsizes for each oomain:
-    figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
-              'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
-              'Northern Plains': (7,11), 'Northwest': (11,9),
-              'Southwest': (11.5,11), 'Ohio': (7.5,12),
-              'Indiana': (7.5,12.5), 'Alabama': (9,12),
-              'CONUS': (15,13)}
+    figsize_table = wedgj_utils.figsize_table(self)
 
     #Make figure:
     fig, ax = plt.subplots(figsize = figsize_table[domain], subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
 
-    #Determine extent:
-    extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
-                    'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
-                    'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                    'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                    'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                    'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+    extent_table = wedgj_utils.extent_table(self)
 
     #Add cartopy boundaries::
     try:
@@ -196,24 +184,12 @@ class storm:
       flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M')))]
       svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M')))]
 
-      #Get figsizes for each oomain:
-      figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
-                'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
-                'Northern Plains': (7,11), 'Northwest': (11,9),
-                'Southwest': (11.5,11), 'Ohio': (7.5,12),
-                'Indiana': (7.5,12.5), 'Alabama': (9,12),
-                'CONUS': (15,13)}
+      figsize_table = wedgj_utils.figsize_table(self)
 
       #Make figure:
       fig, ax = plt.subplots(figsize = figsize_table[domain], subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
 
-      #Determine extent:
-      extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
-                      'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
-                      'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                      'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                      'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                      'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+      extent_table = wedgj_utils.extent_table(self)
 
       #Add cartopy boundaries::
       try:
@@ -365,24 +341,12 @@ class storm:
       tor_points_F4 = tor_pts_gdf[(tor_pts_gdf['mag'] == 4) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_points_F5 = tor_pts_gdf[(tor_pts_gdf['mag'] == 5) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
 
-      #Get figsizes for each domain:
-      figsize_table = {'Midwest': (8.5, 13), 'Northeast': (9, 12), 
-                'Southeast': (10,13), 'TN Valley': (9,12), 'Southern Plains': (8,16), 
-                'Northern Plains': (7,11), 'Northwest': (11,9),
-                'Southwest': (11.5,11), 'Ohio': (7.5,12),
-                'Indiana': (7.5,12.5), 'Alabama': (9,12),
-                'CONUS': (15,13)}
+      figsize_table = wedgj_utils.figsize_table(self)
 
       #Make figure:
       fig, ax = plt.subplots(figsize = figsize_table[domain], subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
 
-      #Determine extent:
-      extent_table = {'Midwest': (-99.2, -78.27, 36.48, 49.64), 'Northeast': (-84.93, -66.21, 35.99, 47.68), 
-                      'Southeast': (-95.39, -75.17, 24.50, 37.35), 'TN Valley': (-92, -81, 39.3, 33), 'Southern Plains': (-109.55, -90.34, 24.94, 40.38), 
-                      'Northern Plains': (-106.71, -94.14, 39.15, 49.48), 'Northwest': (-125.37, -103.47, 40.75, 49.48),
-                      'Southwest': (-125.21, -101.77, 30.97, 42.22), 'Ohio': (-85.14, -80.17, 37.92, 42.19),
-                      'Indiana': (-88.97, -83.84, 37.32, 41.92), 'Alabama': (-89.65, -83.87, 29.64, 35.36),
-                      'CONUS': (-127.0, -65.5, 23.0, 49.0)}
+      extent_table = wedgj_utils.extent_table(self)
 
       #Add cartopy boundaries::
       try:
