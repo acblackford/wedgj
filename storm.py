@@ -788,7 +788,7 @@ class storm:
         print('Invalid tor_type input.')
 
       #Add legend:
-      patch_UNK = mpatches.Patch(edgecolor = 'black', label = f'F/EF UNK ({UNK_total})', facecolor=tor_colors['UNK'])
+      patch_UNK = mpatches.Patch(edgecolor = 'black', label = f'F/EF UNK ({UNK_total})', facecolor=tor_colors['FUNK'])
       patch_F0 = mpatches.Patch(edgecolor = 'black', label = f'F/EF 0 ({F0_total})', facecolor=tor_colors['F0'])
       patch_F1 = mpatches.Patch(edgecolor = 'black', label = f'F/EF 1 ({F1_total})', facecolor=tor_colors['F1'])
       patch_F2 = mpatches.Patch(edgecolor= 'black', label = f'F/EF 2 ({F2_total})', facecolor=tor_colors['F2'])
