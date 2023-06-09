@@ -326,7 +326,7 @@ class spc_plot:
     figsize_table = wedgj_utils.figsize_table(self)
 
     #Plot the figure:
-    fig, (ax0, ax1) = plt.subplots(figsize = ((figsize_table[domain][0]*2), figsize_table[domain][1]), ncols = 2, nrows = 1, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
+    fig, (ax0, ax1) = plt.subplots(figsize = (figsize = (16,6), ncols = 2, nrows = 1, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
    
     #Determine extent:
     extent_table = wedgj_utils.extent_table(self)
