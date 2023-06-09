@@ -10,7 +10,7 @@ import geopandas as gpd
 import matplotlib.patches as mpatches
 import pandas as pd
 import warnings
-import wedgj_utils
+import wedgj_utils.py
 
 ###########################################
 #                                         #
@@ -23,7 +23,7 @@ class storm:
   def __init__(self):
     self.date = datetime.utcnow()
     
-  #--------- Storm Reports Function ---------#
+###--------- Storm Reports Function ---------###
 
   def storm_reports(self, date = None, spath = None, domain = 'CONUS', report_type = 'All', data = None, data_cint = None, data_levels = None):
 
@@ -131,26 +131,15 @@ class storm:
     #Add cities to state plots:
     if domain == 'Ohio':
         wedgj_utils.plot_oh_cities(self, ax)
+    elif domain == 'Indiana':
+        wedgj_utils.plot_in_cities(self, ax)
+    elif domain == 'Alabama':
+        wedgj_utils.plot_al_cities(self, ax)
+    else:
+        pass
 
-    shpfilename = shpreader.natural_earth(resolution='110m',
-                                        category='cultural',
-                                        name='admin_0_countries')
-    reader = shpreader.Reader(shpfilename)
-    countries = reader.records()
-
-    for country in countries:
-        if country.attributes['ADMIN'] != 'United States of America':
-            ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                              facecolor=(1, 0.87, 0.75),
-                              label=country.attributes['ADMIN'])
-        else:
-            pass
-
-    ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-    ax.add_feature(cfeature.STATES, lw = 0.5)
-    ax.add_feature(cfeature.BORDERS, lw = 0.5)
-    ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-    ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+    #Add cartopy boundaries:
+    wedgj_utils.add_geog_ref(self, ax)
 
     #Get end of valid time:
     end_date = date + timedelta(days=1)
@@ -313,26 +302,15 @@ class storm:
       #Add cities to state plots:
       if domain == 'Ohio':
         wedgj_utils.plot_oh_cities(self, ax)
+      elif domain == 'Indiana':
+        wedgj_utils.plot_in_cities(self, ax)
+      elif domain == 'Alabama':
+        wedgj_utils.plot_al_cities(self, ax)
+      else:
+        pass
         
-      shpfilename = shpreader.natural_earth(resolution='110m',
-                                          category='cultural',
-                                          name='admin_0_countries')
-      reader = shpreader.Reader(shpfilename)
-      countries = reader.records()
-
-      for country in countries:
-          if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                                facecolor=(1, 0.87, 0.75),
-                                label=country.attributes['ADMIN'])
-          else:
-              pass
-
-      ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.STATES, lw = 0.5)
-      ax.add_feature(cfeature.BORDERS, lw = 0.5)
-      ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+      #Add cartopy boundaries:
+      wedgj_utils.add_geog_ref(self, ax)
 
       plt.tight_layout()
       plt.title('NWS Storm-Based Warnings: {} Domain\n(Valid {} - {})'.format(domain, start_date.strftime("%Y%m%d %H%M UTC"), end_date.strftime("%Y%m%d %H%M UTC")), fontweight = 'bold', fontsize = 14)
@@ -343,7 +321,7 @@ class storm:
         pass       
 
 
-  ###---------Tornado Path Function---------###
+###---------Tornado Path Function---------###
 
 
   def tor_plot(self, start_date, end_date, spath = None, domain = 'CONUS', tor_type = 'Both', rating = 'All'):
@@ -795,26 +773,15 @@ class storm:
       #Add cities to state plots:
       if domain == 'Ohio':
         wedgj_utils.plot_oh_cities(self, ax)
-      
-      shpfilename = shpreader.natural_earth(resolution='110m',
-                                          category='cultural',
-                                          name='admin_0_countries')
-      reader = shpreader.Reader(shpfilename)
-      countries = reader.records()
-
-      for country in countries:
-          if country.attributes['ADMIN'] != 'United States of America':
-              ax.add_geometries([country.geometry], ccrs.crs.PlateCarree(),
-                                facecolor=(1, 0.87, 0.75),
-                                label=country.attributes['ADMIN'])
-          else:
-              pass
-
-      ax.add_feature(cfeature.LAKES, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.STATES, lw = 0.5)
-      ax.add_feature(cfeature.BORDERS, lw = 0.5)
-      ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
-      ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+      elif domain == 'Indiana':
+        wedgj_utils.plot_in_cities(self, ax)
+      elif domain == 'Alabama':
+        wedgj_utils.plot_al_cities(self, ax)
+      else:
+        pass
+        
+      #Add cartopy boundaries:
+      wedgj_utils.add_geog_ref(self, ax)
 
       plt.tight_layout()
       plt.title('Confirmed Tornadoes (NWS/SPC): {} Domain\n(Valid {} - {})'.format(domain, start_date.strftime("%Y%m%d"), end_date.strftime("%Y%m%d")), fontweight = 'bold', fontsize = 14)
