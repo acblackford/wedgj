@@ -258,7 +258,10 @@ class spc_plot:
     for ax in plot_loc:
       #Determine extent:
       extent_table = wedgj_utils.extent_table(self)
-
+      
+      #Set aspect ratio:
+      ax.set_aspect(1.1)
+      
       #Add cartopy boundaries::
       try:
         ax.set_extent(extent_table[domain])
@@ -407,6 +410,9 @@ class spc_plot:
       #Determine extent:
       extent_table = wedgj_utils.extent_table(self)
 
+      #Set aspect ratio:
+      ax.set_aspect(1.1)
+      
       #Add cartopy boundaries::
       try:
         ax.set_extent(extent_table[domain])
