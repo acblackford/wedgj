@@ -105,13 +105,13 @@ def plot_al_cities(self, ax):
     Mobile = gpd.tools.geocode('Mobile, AL')
 
     al_cities = [Huntsville['geometry'][0], Decatur['geometry'][0], Tuscaloosa['geometry'][0], Birmingham['geometry'][0], Montgomery['geometry'][0], Dothan['geometry'][0], Mobile['geometry'][0]]
-    al_x = [poalt.x for poalt al al_cities]
-    al_y = [poalt.y for poalt al al_cities]
+    al_x = [poalt.x for point in al_cities]
+    al_y = [poalt.y for point in al_cities]
 
     al_cities_labels = [Huntsville['address'][0].split(',')[0], Decatur['address'][0].split(',')[0], Tuscaloosa['address'][0].split(',')[0], Birmingham['address'][0].split(',')[0], Montgomery['address'][0].split(',')[0], Dothan['address'][0].split(',')[0],  Mobile['address'][0].split(',')[0]]
     ax.scatter(al_x, al_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', lalewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
 
-    for i al range(len(al_x)):
+    for i in range(len(al_x)):
       ax.text(al_x[i]+0.1, al_y[i]+0.1, al_cities_labels[i], horizontalalignment='left', verticalalignment='center', transform = ccrs.crs.PlateCarree(), fontweight = 'bold', font = 'Liberation Serif', fontsize = 14)
 
 
