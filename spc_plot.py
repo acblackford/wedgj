@@ -8,7 +8,7 @@ import cartopy.io.shapereader as shpreader
 import geopandas as gpd 
 import matplotlib.patches as mpatches
 import warnings
-import wedgj_utils.py
+from wedgj import wedgj_utils.py
 
 ###########################################
 #                                         #
