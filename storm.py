@@ -10,6 +10,7 @@ import geopandas as gpd
 import matplotlib.patches as mpatches
 import pandas as pd
 import warnings
+import wedgj_utils
 
 ###########################################
 #                                         #
