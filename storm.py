@@ -331,6 +331,9 @@ class storm:
       tor_paths_F3 = tor_paths_gdf[(tor_paths_gdf['mag'] == 3) & (tor_paths_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_paths_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_paths_F4 = tor_paths_gdf[(tor_paths_gdf['mag'] == 4) & (tor_paths_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_paths_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_paths_F5 = tor_paths_gdf[(tor_paths_gdf['mag'] == 5) & (tor_paths_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_paths_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
+      tor_paths_FAT = tor_paths_gdf[(tor_paths_gdf['fat'] >= 1) & (tor_paths_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_paths_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
+      tor_paths_INJ = tor_paths_gdf[(tor_paths_gdf['inj'] >= 1) & (tor_paths_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_paths_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
+
       #Points:
       tor_points_UNK = tor_pts_gdf[(tor_pts_gdf['mag'] == -9) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_points_F0 = tor_pts_gdf[(tor_pts_gdf['mag'] == 0) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
@@ -339,6 +342,8 @@ class storm:
       tor_points_F3 = tor_pts_gdf[(tor_pts_gdf['mag'] == 3) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_points_F4 = tor_pts_gdf[(tor_pts_gdf['mag'] == 4) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
       tor_points_F5 = tor_pts_gdf[(tor_pts_gdf['mag'] == 5) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
+      tor_points_FAT = tor_pts_gdf[(tor_pts_gdf['fat'] >= 1) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
+      tor_points_INJ = tor_pts_gdf[(tor_pts_gdf['inj'] >= 1) & (tor_pts_gdf['date'] >= start_date.strftime('%Y-%m-%d')) & (tor_pts_gdf['date'] <= end_date.strftime('%Y-%m-%d'))]
 
       figsize_table = wedgj_utils.figsize_table(self)
 
@@ -487,6 +492,23 @@ class storm:
             tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
           except:
             pass
+        elif rating == 'FAT':        
+          try:
+            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+            tor_points_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+          except:
+            pass
+        elif rating == 'INJ':        
+          try:
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+            tor_points_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+          except:
+            pass                                                                        
+          try:
+            tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
+            tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
+          except:
+            pass
         elif rating =='UNK':
           try:
             tor_paths_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], lw = 2.5)
@@ -586,6 +608,16 @@ class storm:
             tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
           except:
             pass
+        elif rating == 'FAT':        
+          try:
+            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+          except:
+            pass
+        elif rating == 'INJ':        
+          try:
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+          except:
+            pass                                                                              
         elif rating =='UNK':
           try:
             tor_paths_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], lw = 2.5)
@@ -678,6 +710,16 @@ class storm:
             ax.scatter(tor_points_F5['slon'], tor_points_F5['slat'], color = tor_colors['F5'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
+        elif rating == 'FAT':        
+          try:
+            tor_points_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+          except:
+            pass
+        elif rating == 'INJ':        
+          try:
+            tor_points_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+          except:
+            pass                                                                             
         elif rating =='UNK':
           try:
             ax.scatter(tor_points_UNK['slon'], tor_points_UNK['slat'], color = tor_colors['UNK'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
