@@ -335,7 +335,7 @@ class spc_plot:
     try:
       cat_gdf.loc[[0],'geometry'].plot(ax = ax0, color = cat_gdf.loc[[0],'fill'], edgecolor = cat_gdf.loc[[0],'stroke'])
     except:
-      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
+      ax0.text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       cat_gdf.loc[[1],'geometry'].plot(ax = ax0, color = cat_gdf.loc[[1],'fill'], edgecolor = cat_gdf.loc[[1],'stroke'])
     except:
@@ -370,7 +370,7 @@ class spc_plot:
     try:
       prob_gdf.loc[[0],'geometry'].plot(ax = ax1, color = prob_gdf.loc[[0],'fill'], edgecolor = prob_gdf.loc[[0],'stroke'])
     except:
-      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
+      ax1.text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       prob_gdf.loc[[1],'geometry'].plot(ax = ax1, color = prob_gdf.loc[[1],'fill'], edgecolor = prob_gdf.loc[[1],'stroke'])
     except:
