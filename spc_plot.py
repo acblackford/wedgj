@@ -96,7 +96,9 @@ class spc_plot:
     sighail_gdf = gpd.GeoDataFrame(sighail, geometry=sighail['geometry'], crs=4326)
 
     figsize_table = wedgj_utils.figsize_table(self)
-
+    #Determine extent:
+    extent_table = wedgj_utils.extent_table(self)
+    
     #Plot the figure:
     fig, ax = plt.subplots(figsize = (16,12), ncols = 2, nrows = 2, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
 
@@ -124,7 +126,7 @@ class spc_plot:
     try:
       cat_gdf.loc[[5],'geometry'].plot(ax = ax[0,0], color = cat_gdf.loc[[5],'fill'], edgecolor = cat_gdf.loc[[5],'stroke'])
     except:
-      ax[0,0].text(0.5, 0.5, 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[0,0].TransAxes)
+      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
 
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = '#C1E9C1', label = 'TSTM', edgecolor='#55BB55')
@@ -167,7 +169,7 @@ class spc_plot:
     try:
       sigtor_gdf.loc[[0],'geometry'].plot(ax = ax[0,1], color = 'None', edgecolor = sigtor_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[0,1].text(0.5, 0.5, 'Less Than 2% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[0,1].TransAxes)
+      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 2% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
 
 
     #Add tornado legend:
@@ -205,7 +207,7 @@ class spc_plot:
     try:
       sigwind_gdf.loc[[0],'geometry'].plot(ax = ax[1,0], color = 'None', edgecolor = sigwind_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[1,0].text(0.5, 0.5, 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[1,0].TransAxes)
+      ax[1,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
 
 
     #Add wind legend:
@@ -241,7 +243,7 @@ class spc_plot:
     try:
       sighail_gdf.loc[[0],'geometry'].plot(ax = ax[1,1], color = 'None', edgecolor = sighail_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[1,1].text(0.5, 0.5, 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ax[1,1].TransAxes)
+      ax[1,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
 
 
     #Add hail legend (same colormap as wind):
@@ -259,8 +261,6 @@ class spc_plot:
     
     #Add cartopy boundaries:
     for ax in plot_loc:
-      #Determine extent:
-      extent_table = wedgj_utils.extent_table(self)
       
       #Set aspect ratio:
       ax.set_aspect(1.1)
