@@ -11,8 +11,7 @@ University of Alabama in Huntsville, June 2023
 Required modules for complete functionality are:
 - Python 3+
 - geopandas (>=0.13.0, except 0.13.1)
-- pandas
-- cartopy
+- cartopy (>=0.21.0)
 - Numpy
 - Matplotlib
 
