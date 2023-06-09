@@ -533,27 +533,27 @@ class storm:
       elif tor_type == 'Paths':
         if rating == 'All':  
           try:
-            tor_paths_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], lw = 1.5)
+            tor_paths_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], lw = 2.5)
           except:
             pass
           try:
-            tor_paths_F0['geometry'].plot(ax = ax, color = tor_colors['F0'], lw = 1.5)
+            tor_paths_F0['geometry'].plot(ax = ax, color = tor_colors['F0'], lw = 2.5)
           except:
             pass
           try:
-            tor_paths_F1['geometry'].plot(ax = ax, color = tor_colors['F1'], lw = 1.5)
+            tor_paths_F1['geometry'].plot(ax = ax, color = tor_colors['F1'], lw = 2.5)
           except:
             pass
           try:
-            tor_paths_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], lw = 1.5)
+            tor_paths_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], lw = 2.5)
           except:
             pass
           try:
-            tor_paths_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], lw = 1.5)
+            tor_paths_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], lw = 2.5)
           except:
             pass
           try:
-            tor_paths_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], lw = 1.5)
+            tor_paths_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], lw = 2.5)
           except:
             pass
           try:
