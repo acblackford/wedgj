@@ -377,7 +377,11 @@ class storm:
       tor_paths_F4_lats = np.array(tor_paths_F4['geometry'].centroid.y)
       tor_paths_F5_lons = np.array(tor_paths_F5['geometry'].centroid.x)
       tor_paths_F5_lats = np.array(tor_paths_F5['geometry'].centroid.y)
-
+      tor_paths_FAT_lons = np.array(tor_paths_FAT['geometry'].centroid.x)
+      tor_paths_FAT_lats = np.array(tor_paths_FAT['geometry'].centroid.y)      
+      tor_paths_INJ_lons = np.array(tor_paths_INJ['geometry'].centroid.x)
+      tor_paths_INJ_lats = np.array(tor_paths_INJ['geometry'].centroid.y)  
+      
       if len(set(tor_paths_UNK['date'])) > 0:
         for index,row in tor_paths_UNK.iterrows():
           UNK_total = np.sum((tor_paths_UNK_lons > (extent[0])) & (tor_paths_UNK_lons < (extent[1])) & (tor_paths_UNK_lats > (extent[2])) & (tor_paths_UNK_lats < (extent[3])))
@@ -413,7 +417,18 @@ class storm:
           F5_total = np.sum((tor_paths_F5_lons.isnull() > (extent[0])) & (tor_paths_F5_lons.isnull() < (extent[1])) & (tor_paths_F5_lats.isnull() > (extent[2])) & (tor_paths_F5_lats.isnull() < (extent[3]))) 
       else:
         F5_total = 0
+      if len(set(tor_paths_FAT['date'])) > 0:           
+        for index,row in tor_paths_FAT.iterrows():
+          FAT_total = np.sum(tor_paths_FAT['fat'][(tor_paths_FAT_lons > (extent[0])) & (tor_paths_FAT_lons < (extent[1])) & (tor_paths_FAT_lats > (extent[2])) & (tor_paths_FAT_lats < (extent[3]))]) 
+      else:
+        FAT_total = 0
 
+      if len(set(tor_paths_INJ['date'])) > 0:           
+        for index,row in tor_paths_INJ.iterrows():
+          INJ_total = np.sum(tor_paths_INJ['inj'][(tor_paths_INJ_lons > (extent[0])) & (tor_paths_INJ_lons < (extent[1])) & (tor_paths_INJ_lats > (extent[2])) & (tor_paths_INJ_lats < (extent[3]))]) 
+      else:
+        INJ_total = 0
+        
       #Get total tornado count:
       tor_total_array = [UNK_total, F0_total, F1_total, F2_total, F3_total, F4_total, F5_total]
       tor_total = np.sum(tor_total_array)   
@@ -763,8 +778,10 @@ class storm:
       patch_F4 = mpatches.Patch(edgecolor = 'black', label = f'F/EF 4 ({F4_total})', facecolor=tor_colors['F4'])
       patch_F5 = mpatches.Patch(edgecolor= 'black', label = f'F/EF 5 ({F5_total})', facecolor=tor_colors['F5'])
       patch_TOT = mpatches.Patch(edgecolor= 'None', label = f'Total: {tor_total}', facecolor='None')
+      patch_FAT =  mpatches.Patch(edgecolor= 'None', label = f'Fatalities: {FAT_total}', facecolor='None')
+      patch_INJ =  mpatches.Patch(edgecolor= 'None', label = f'Injuries: {INJ_total}', facecolor='None')
 
-      ax.legend(handles = [patch_UNK, patch_F0, patch_F1, patch_F2, patch_F3, patch_F4, patch_F5, patch_TOT], loc = (0.01,0.01), ncol = 3, fontsize = 8) 
+      ax.legend(handles = [patch_UNK, patch_F0, patch_F1, patch_F2, patch_F3, patch_F4, patch_F5, patch_TOT, patch_FAT, patch_INJ], loc = (0.01,0.01), ncol = 2, fontsize = 8) 
 
       #Add counties if not CONUS:
       if domain != 'CONUS':
