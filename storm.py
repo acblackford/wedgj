@@ -202,7 +202,8 @@ class storm:
            for year in years:
              link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(year)
              warns = gpd.read_file(link)
-             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
+             warns_gdf_yrs = gpd.GeoDataFrame(warns, geometry=warns['geometry'])
+             warns_gdf_yrs.to_crs(4326)
              warns_gdf_yrs['ISSUED'] = warns_gdf_yrs['ISSUED'].astype('datetime64')
              warns_gdf = pd.concat([warns_gdf_yrs, warns_gdf])
         except:
@@ -210,7 +211,8 @@ class storm:
       else:
           link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(start_date.strftime("%Y"))
           warns = gpd.read_file(link)
-          warns_gdf = gpd.GeoDataFrame(warns, geometry=warns['geometry'], crs=4326)
+          warns_gdf = gpd.GeoDataFrame(warns, geometry=warns['geometry'])
+          warns_gdf.to_crs(4326)
           warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
             
       #Define each type of warning:
@@ -337,12 +339,8 @@ class storm:
         oh_cities_labels = [Dayton['address'][0], Cincinnati['address'][0], Columbus['address'][0], Cleveland['address'][0], Toledo['address'][0], Akron['address'][0]]
         cities = ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
   
-        for oh_cities_labels, cities in zip(zip(oh_x, oh_y), cities):
-            ax.annotate(f'{oh_cities_labels}',
-                        xy=(oh_x, oh_y),
-                        xytext=(3, 3),
-                        textcoords='offset points',
-                        ha='center', va='center')
+        for i in enumerate(len(oh_x)):
+          ax.text(oh_x[i] + 0.01, oh_y[i] + 0.01, oh_cities_labels[i], horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
           
       shpfilename = shpreader.natural_earth(resolution='110m',
                                           category='cultural',
@@ -392,9 +390,9 @@ class storm:
       tor_paths = gpd.read_file(tor_paths)
       tor_pts = gpd.read_file(tor_pts)
       tor_paths_gdf = gpd.GeoDataFrame(tor_paths, geometry=tor_paths['geometry'])
-      tor_paths_gdf.set_crs(4326, allow_override=True)
+      tor_paths_gdf.to_crs(4326)
       tor_pts_gdf = gpd.GeoDataFrame(tor_pts, geometry=tor_pts['geometry'])
-      tor_pts_gdf.set_crs(4326, allow_override=True)
+      tor_pts_gdf.to_crs(4326)
       
       tor_paths_gdf['date'] = tor_paths_gdf['date'].astype('datetime64')
       tor_pts_gdf['date'] = tor_pts_gdf['date'].astype('datetime64')
