@@ -341,7 +341,7 @@ class storm:
         ax.add_feature(USCOUNTIES.with_scale('500k'), lw = 0.1, edgecolor = 'black') 
 
         for i in range(len(oh_x)):
-          ax.text(oh_x[i]+0.1, oh_y[i]+0.1, oh_cities_labels[i], horizontalalignment='left', verticalalignment='center', transform = ccrs.crs.PlateCarree(), fontweight = 'bold', font = 'Liberation Serif')
+          ax.text(oh_x[i]+0.1, oh_y[i]+0.1, oh_cities_labels[i], horizontalalignment='left', verticalalignment='center', transform = ccrs.crs.PlateCarree(), fontweight = 'bold', font = 'Liberation Serif', fontsize = 12)
 
           
       shpfilename = shpreader.natural_earth(resolution='110m',
