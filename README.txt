@@ -83,42 +83,17 @@ spath (string, path to save the figure if desired)
 domain (string, from the above list)
 warn_type (string, options are: 'All', 'TOR', 'SVR', and 'FFW')
 
-
 The function tor_plot can take the following inputs:
-
-For the tor_plot function, valid tor_type inputs are:
 start_date (a datetime object)
 end_date (a datetime object)
 spath (string, path to save the figure if desired)
 domain (string, from the above list)
 tor_type (string, options are: 'Both', 'Points', and 'Paths') 
-Note: 'Points' will plot touchdown locations of the tornadoes.
-rating (string, options are 'All', 'Significant', 'Violent', 'UNK', '0', '1', '2', '3', '4', and '5')
+rating (string, options are 'All', 'Significant', 'Violent', 'FAT', 'INJ', 'UNK', '0', '1', '2', '3', '4', and '5')
 
-Note: Contrary to storm.sbw, storm.tor_plot supports date ranges throughout multiple calendar years.
+Note: tor_type('Points') will plot touchdown locations of the tornadoes.
 
 ------------------------------------------EXAMPLES------------------------------------------
 
-***See Examples folder for a notebook of examples***
-
-Example creation of the spc_plot.day1_2_outlook object to plot the Day 1 45% tornado risk day in the Southeast domain in March of 2021.
-
-    import wedgj.spc_plot as outlook
-
-    #Import other dependency for setting archive dates:
-    from datetime import datetime, timedelta
-     
-    rdr = outlook.spc_plot()
-    rdr.day1_2_outlook(date = datetime(2021,3,17,16,30), domain = 'Southeast', outlook_day = 'day1')
-
-Example creation of the storm.sbw object to plot all tornado warnings in CONUS in the year 2019.
-
-    import wedgj.storm as storm
-   
-    #Import other dependency for setting archive dates:
-    from datetime import datetime, timedelta
-
-    rdr = storm.storm()
-    rdr.sbw(start_date = datetime(2019,1,1,0,0), end_date = datetime(2019,12,31,23,59), warn_type = 'TOR')
-    
+***See Examples folder for a Google Colab and Jupyter notebook of examples using wedgj***   
     
