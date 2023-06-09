@@ -70,6 +70,22 @@ def add_geog_ref(self, ax):
     ax.add_feature(cfeature.OCEAN, facecolor = 'lightcyan', edgecolor = 'black', lw = 0.33)
     ax.add_feature(cfeature.COASTLINE, lw = 0.75)
 
+#####------ plot_counties ------#####
+# plot_counties will load in an in- # 
+# house county shapefile to plot on #
+# regional and state domains        #
+#####################################
+    
+def plot_counties(self, ax):
+    reader = shpreader.Reader('wedgj/Shapefiles/US_Counties/US_Counties.shp')
+
+    county = list(reader.geometries())
+    county_lines = cfeature.ShapelyFeature(county, ccrs.crs.PlateCarree())
+
+
+    ax.add_feature(county_lines, lw = 0.1, edgecolor = 'black', facecolor = 'None')
+    
+    
 ######------ plot_oh_cities ------######
 # plot_oh_cities adds desired Ohio     # 
 # major cities to the state scene      #
