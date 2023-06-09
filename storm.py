@@ -462,93 +462,88 @@ class storm:
         elif rating == 'Significant':        
           try:
             tor_paths_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], lw = 2.5)
-            tor_points_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], edgecolor = 'black')
+            ax.scatter(tor_points_F2['slon'], tor_points_F2['slat'], color = tor_colors['F2'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
           try:
             tor_paths_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], lw = 2.5)
-            tor_points_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], edgecolor = 'black')
+            ax.scatter(tor_points_F3['slon'], tor_points_F3['slat'], color = tor_colors['F3'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
           try:
             tor_paths_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], lw = 2.5)
-            tor_points_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], edgecolor = 'black')
+            ax.scatter(tor_points_F4['slon'], tor_points_F4['slat'], color = tor_colors['F4'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
           try:
             tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
-            tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
+            ax.scatter(tor_points_F5['slon'], tor_points_F5['slat'], color = tor_colors['F5'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
 
         elif rating == 'Violent':        
           try:
             tor_paths_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], lw = 2.5)
-            tor_points_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], edgecolor = 'black')
+            ax.scatter(tor_points_F4['slon'], tor_points_F4['slat'], color = tor_colors['F4'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
           try:
             tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
-            tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
+            ax.scatter(tor_points_F5['slon'], tor_points_F5['slat'], color = tor_colors['F5'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating == 'FAT':        
           try:
-            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
-            tor_points_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag']], lw = 2.5)
+            ax.scatter(tor_points_FAT['slon'], tor_points_FAT['slat'], color =  tor_colors[tor_points_FAT['mag']], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating == 'INJ':        
           try:
-            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
-            tor_points_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag']], lw = 2.5)
+            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color =  tor_colors[tor_points_FAT['mag']], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass                                                                        
-          try:
-            tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
-            tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
-          except:
-            pass
         elif rating =='UNK':
           try:
             tor_paths_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], lw = 2.5)
-            tor_points_UNK['geometry'].plot(ax = ax, color = tor_colors['UNK'], edgecolor = 'black')
+            ax.scatter(tor_points_UNK['slon'], tor_points_UNK['slat'], color = tor_colors['UNK'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='0':
           try:
             tor_paths_F0['geometry'].plot(ax = ax, color = tor_colors['F0'], lw = 2.5)
-            tor_points_F0['geometry'].plot(ax = ax, color = tor_colors['F0'], edgecolor = 'black')
+            ax.scatter(tor_points_F0['slon'], tor_points_F0['slat'], color = tor_colors['F0'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='1':
           try:
             tor_paths_F1['geometry'].plot(ax = ax, color = tor_colors['F1'], lw = 2.5)
-            tor_points_F1['geometry'].plot(ax = ax, color = tor_colors['F1'], edgecolor = 'black')
+            ax.scatter(tor_points_F1['slon'], tor_points_F1['slat'], color = tor_colors['F1'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='2':
           try:
             tor_paths_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], lw = 2.5)
-            tor_points_F2['geometry'].plot(ax = ax, color = tor_colors['F2'], edgecolor = 'black')
+            ax.scatter(tor_points_F2['slon'], tor_points_F2['slat'], color = tor_colors['F2'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='3':
           try:
             tor_paths_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], lw = 2.5)
-            tor_points_F3['geometry'].plot(ax = ax, color = tor_colors['F3'], edgecolor = 'black')
+            ax.scatter(tor_points_F3['slon'], tor_points_F3['slat'], color = tor_colors['F3'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='4':
           try:
             tor_paths_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], lw = 2.5)
-            tor_points_F4['geometry'].plot(ax = ax, color = tor_colors['F4'], edgecolor = 'black')
+            ax.scatter(tor_points_F4['slon'], tor_points_F4['slat'], color = tor_colors['F4'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating =='5':
           try:
             tor_paths_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], lw = 2.5)
-            tor_points_F5['geometry'].plot(ax = ax, color = tor_colors['F5'], edgecolor = 'black')
+            ax.scatter(tor_points_F5['slon'], tor_points_F5['slat'], color = tor_colors['F5'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass          
 
@@ -610,12 +605,12 @@ class storm:
             pass
         elif rating == 'FAT':        
           try:
-            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+            tor_paths_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag']], lw = 2.5)
           except:
             pass
         elif rating == 'INJ':        
           try:
-            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag'], lw = 2.5)
+            tor_paths_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_paths_FAT['mag']], lw = 2.5)
           except:
             pass                                                                              
         elif rating =='UNK':
@@ -712,14 +707,14 @@ class storm:
             pass
         elif rating == 'FAT':        
           try:
-            tor_points_FAT['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+            ax.scatter(tor_points_FAT['slon'], tor_points_FAT['slat'], color =  tor_colors[tor_points_FAT['mag']], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
             pass
         elif rating == 'INJ':        
           try:
-            tor_points_INJ['geometry'].plot(ax = ax, color = tor_colors[tor_points_FAT['mag'], edgecolor = 'black')
+            ax.scatter(tor_points_INJ['slon'], tor_points_INJ['slat'], color =  tor_colors[tor_points_FAT['mag']], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
           except:
-            pass                                                                             
+            pass                                                                              
         elif rating =='UNK':
           try:
             ax.scatter(tor_points_UNK['slon'], tor_points_UNK['slat'], color = tor_colors['UNK'], linewidths = 0.5, edgecolor = 'black', s = 20, marker = 'v', transform = ccrs.crs.PlateCarree(), zorder = 10)
