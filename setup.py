@@ -20,7 +20,7 @@ setuptools.setup(
     package_dir={"": "."},
     packages=setuptools.find_packages(where="."),
     python_requires='>=3.0',
-    install_requires=[="cartopy>=0.21.0",
+    install_requires=["cartopy>=0.21.0",
                       "numpy", 
                       "geopandas<0.13.1",
                       "matplotlib"]
