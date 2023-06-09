@@ -106,7 +106,7 @@ class spc_plot:
     try:
       cat_gdf.loc[[0],'geometry'].plot(ax = ax[0,0], color = cat_gdf.loc[[0],'fill'], edgecolor = cat_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       cat_gdf.loc[[1],'geometry'].plot(ax = ax[0,0], color = cat_gdf.loc[[1],'fill'], edgecolor = cat_gdf.loc[[1],'stroke'])
     except:
@@ -126,7 +126,7 @@ class spc_plot:
     try:
       cat_gdf.loc[[5],'geometry'].plot(ax = ax[0,0], color = cat_gdf.loc[[5],'fill'], edgecolor = cat_gdf.loc[[5],'stroke'])
     except:
-      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
+      pass
 
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = '#C1E9C1', label = 'TSTM', edgecolor='#55BB55')
@@ -141,7 +141,7 @@ class spc_plot:
     try:
       tor_gdf.loc[[0],'geometry'].plot(ax = ax[0,1], color = tor_gdf.loc[[0],'fill'], edgecolor = tor_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 2% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       tor_gdf.loc[[1],'geometry'].plot(ax = ax[0,1], color = tor_gdf.loc[[1],'fill'], edgecolor = tor_gdf.loc[[1],'stroke'])
     except:
@@ -169,8 +169,7 @@ class spc_plot:
     try:
       sigtor_gdf.loc[[0],'geometry'].plot(ax = ax[0,1], color = 'None', edgecolor = sigtor_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 2% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
-
+      pass
 
     #Add tornado legend:
     patch_tor2  = mpatches.Patch(facecolor = '#66A366', label = '2%', edgecolor='#005500')
@@ -187,7 +186,7 @@ class spc_plot:
     try:
       wind_gdf.loc[[0],'geometry'].plot(ax = ax[1,0], color = wind_gdf.loc[[0],'fill'], edgecolor = wind_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[1,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       wind_gdf.loc[[1],'geometry'].plot(ax = ax[1,0], color = wind_gdf.loc[[1],'fill'], edgecolor = wind_gdf.loc[[1],'stroke'])
     except:
@@ -207,8 +206,7 @@ class spc_plot:
     try:
       sigwind_gdf.loc[[0],'geometry'].plot(ax = ax[1,0], color = 'None', edgecolor = sigwind_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[1,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
-
+      pass
 
     #Add wind legend:
     patch_wind5  = mpatches.Patch(facecolor = '#9d4e15', label = '5%', edgecolor='#70380f')
@@ -223,7 +221,7 @@ class spc_plot:
     try:
       hail_gdf.loc[[0],'geometry'].plot(ax = ax[1,1], color = hail_gdf.loc[[0],'fill'], edgecolor = hail_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[1,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       hail_gdf.loc[[1],'geometry'].plot(ax = ax[1,1], color = hail_gdf.loc[[1],'fill'], edgecolor = hail_gdf.loc[[1],'stroke'])
     except:
@@ -243,8 +241,7 @@ class spc_plot:
     try:
       sighail_gdf.loc[[0],'geometry'].plot(ax = ax[1,1], color = 'None', edgecolor = sighail_gdf.loc[[0],'stroke'], hatch = '/')
     except:
-      ax[1,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
-
+      pass
 
     #Add hail legend (same colormap as wind):
     ax[1,1].legend(handles = [patch_wind5, patch_wind15, patch_wind30, patch_wind45, patch_wind60, patch_sigwind], loc = (0.01,0.01), ncol = 3, fontsize = 8)
@@ -330,12 +327,15 @@ class spc_plot:
 
     #Plot the figure:
     fig, (ax0, ax1) = plt.subplots(figsize = ((figsize_table[domain][0]*2), figsize_table[domain][1]), ncols = 2, nrows = 1, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
-
+   
+    #Determine extent:
+    extent_table = wedgj_utils.extent_table(self)
+      
     ### Categorical ###
     try:
       cat_gdf.loc[[0],'geometry'].plot(ax = ax0, color = cat_gdf.loc[[0],'fill'], edgecolor = cat_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'No Thunderstorms Forecast', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       cat_gdf.loc[[1],'geometry'].plot(ax = ax0, color = cat_gdf.loc[[1],'fill'], edgecolor = cat_gdf.loc[[1],'stroke'])
     except:
@@ -370,7 +370,7 @@ class spc_plot:
     try:
       prob_gdf.loc[[0],'geometry'].plot(ax = ax1, color = prob_gdf.loc[[0],'fill'], edgecolor = prob_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Less Than 5% All Areas', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     try:
       prob_gdf.loc[[1],'geometry'].plot(ax = ax1, color = prob_gdf.loc[[1],'fill'], edgecolor = prob_gdf.loc[[1],'stroke'])
     except:
@@ -410,8 +410,6 @@ class spc_plot:
 
     #Add cartopy boundaries:
     for ax in plot_loc:
-      #Determine extent:
-      extent_table = wedgj_utils.extent_table(self)
 
       #Set aspect ratio:
       ax.set_aspect(1.1)
@@ -464,32 +462,35 @@ class spc_plot:
 
     #Plot the figure:
     fig, ax = plt.subplots(figsize = (16,8), ncols = 3, nrows = 2, subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
-
+    
+    #Determine extent:
+    extent_table = wedgj_utils.extent_table(self)
+    
     ### Day 4 ###
     try:
       d4_gdf.loc[[0],'geometry'].plot(ax = ax[0,0], color = d4_gdf.loc[[0],'fill'], edgecolor = d4_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Probability / Predictability Too Low', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     ### Day 5 ###
     try:
       d5_gdf.loc[[0],'geometry'].plot(ax = ax[0,1], color = d5_gdf.loc[[0],'fill'], edgecolor = d5_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Probability / Predictability Too Low', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     ### Day 6 ###
     try:
       d6_gdf.loc[[0],'geometry'].plot(ax = ax[0,2], color = d6_gdf.loc[[0],'fill'], edgecolor = d6_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[0,2].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Probability / Predictability Too Low', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     ### Day 7 ###
     try:
       d7_gdf.loc[[0],'geometry'].plot(ax = ax[1,0], color = d7_gdf.loc[[0],'fill'], edgecolor = d7_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[1,0].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Probability / Predictability Too Low', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
     ### Day 8 ###
     try:
       d8_gdf.loc[[0],'geometry'].plot(ax = ax[1,1], color = d8_gdf.loc[[0],'fill'], edgecolor = d8_gdf.loc[[0],'stroke'])
     except:
-      pass
+      ax[1,1].text(0.5*(extent_table[domain][0] + extent_table[domain][1]), 0.5*(extent_table[domain][2] + extent_table[domain][3]), 'Probability / Predictability Too Low', horizontalalignment='center', verticalalignment='center', fontweight = 'bold', font = 'Liberation Serif', fontsize = 14, transform = ccrs.crs.PlateCarree())
 
     #Add probabilistic legend:
     patch15 = mpatches.Patch(facecolor = '#FFE066', label = '15%', edgecolor='#DDAA00')
@@ -509,8 +510,6 @@ class spc_plot:
 
     #Add cartopy boundaries:
     for ax in plot_loc:
-      #Determine extent:
-      extent_table = wedgj_utils.extent_table(self)
 
       #Set aspect ratio:
       ax.set_aspect(1.1)
