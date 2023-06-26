@@ -261,7 +261,7 @@ class noaa_performance:
     wedgj_utils.add_geog_ref(self, ax)
 
     plt.tight_layout()
-    plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {} [{}])'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC"), date.strftime("%H%M D1 SPC Outlook")), fontweight = 'bold', fontsize = 14)
+    plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {} [{}])'.format(domain, sbw_start.strftime("%Y%m%d %H%M UTC"), sbw_end.strftime("%Y%m%d %H%M UTC"), date.strftime("%H%M D1 SPC Outlook")), fontweight = 'bold', fontsize = 14)
 
     if spath != None:
       plt.savefig('{}/{}_{}_noaa_performance.png'.format(spath, date.strftime("%Y%m%d"), domain), dpi = 300)
