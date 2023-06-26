@@ -98,12 +98,13 @@ def plot_oh_cities(self, ax):
     Cleveland = gpd.tools.geocode('Cleveland, OH')
     Toledo = gpd.tools.geocode('Toledo, OH')
     Akron = gpd.tools.geocode('Akron, OH')
+    Lima = gpd.tools.geocode('Lima, OH')
 
-    oh_cities = [Dayton['geometry'][0], Cincinnati['geometry'][0], Columbus['geometry'][0], Cleveland['geometry'][0], Toledo['geometry'][0], Akron['geometry'][0]]
+    oh_cities = [Dayton['geometry'][0], Cincinnati['geometry'][0], Columbus['geometry'][0], Cleveland['geometry'][0], Toledo['geometry'][0], Akron['geometry'][0], Lima['geometry'][0]]
     oh_x = [point.x for point in oh_cities]
     oh_y = [point.y for point in oh_cities]
 
-    oh_cities_labels = [Dayton['address'][0].split(',')[0], Cincinnati['address'][0].split(',')[0], Columbus['address'][0].split(',')[0], Cleveland['address'][0].split(',')[0], Toledo['address'][0].split(',')[0], Akron['address'][0].split(',')[0]]
+    oh_cities_labels = [Dayton['address'][0].split(',')[0], Cincinnati['address'][0].split(',')[0], Columbus['address'][0].split(',')[0], Cleveland['address'][0].split(',')[0], Toledo['address'][0].split(',')[0], Akron['address'][0].split(',')[0], Lima['address'][0].split(',')[0]]
     ax.scatter(oh_x, oh_y, color = 'None', edgecolor = 'black', s = 100, marker = 's', linewidths = 2, transform = ccrs.crs.PlateCarree(), zorder = 10)
 
     for i in range(len(oh_x)):
