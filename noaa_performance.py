@@ -48,7 +48,8 @@ class noaa_performance:
     #Refine sbw request to line up with 12-12 UTC SPC valid times for reports and outlooks:
     sbw_start = date
     sbw_end = date
-    
+  
+    sbw_start = date.replace(day = date.day + 0)    
     sbw_start = date.replace(hour = 12)
     sbw_start = date.replace(minute = 0)
     sbw_end = date.replace(day = date.day + 1)   
@@ -134,30 +135,11 @@ class noaa_performance:
     patch_svr = mpatches.Patch(edgecolor = 'black', label = f'Severe Thunderstorm Warning ({svr_total})', facecolor='goldenrod')
     patch_fld = mpatches.Patch(edgecolor= 'black', label = f'Flash Flood Warning ({fld_total})', facecolor='tab:green')
 
-    if warn_type == 'All':
-      ax.legend(handles = [patch_tor, patch_svr, patch_fld], loc = (0.01,0.01), ncol = 3, fontsize = 8)
-    elif warn_type == 'TOR':
-      ax.legend(handles = [patch_tor], loc = (0.01,0.01), fontsize = 8)
-    elif warn_type == 'SVR':
-      ax.legend(handles = [patch_svr], loc = (0.01,0.01), fontsize = 8) 
-    elif warn_type == 'FFW':
-      ax.legend(handles = [patch_fld], loc = (0.01,0.01), fontsize = 8) 
-
-
     #Add reports to legend:
     patch_torn = mpatches.Patch(edgecolor = 'black', label = f'Tornado Reports ({torn_total})', facecolor='tab:red')
     patch_wind = mpatches.Patch(edgecolor = 'black', label = f'Wind Reports ({wind_total})', facecolor='tab:blue')
     patch_hail = mpatches.Patch(edgecolor= 'black', label = f'Hail Reports ({hail_total})', facecolor='tab:green')
-
-    if report_type == 'All':
-      ax.legend(handles = [patch_torn, patch_wind, patch_hail], loc = (0.01,0.01), ncol = 3, fontsize = 8)
-    elif report_type == 'Tornado':
-      ax.legend(handles = [patch_torn], loc = (0.01,0.01), fontsize = 8)
-    elif report_type == 'Wind':
-      ax.legend(handles = [patch_wind], loc = (0.01,0.01), fontsize = 8) 
-    elif report_type == 'Hail':
-      ax.legend(handles = [patch_hail], loc = (0.01,0.01), fontsize = 8)     
-
+   
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = '#C1E9C1', label = 'TSTM', edgecolor='#55BB55')
     patch_mrgl = mpatches.Patch(facecolor = '#66A366', label = 'MRGL', edgecolor='#005500')
@@ -165,7 +147,9 @@ class noaa_performance:
     patch_enh = mpatches.Patch(facecolor = '#FFA366', label = 'ENH', edgecolor='#FF6600')
     patch_mdt = mpatches.Patch(facecolor = '#E06666', label = 'MDT', edgecolor='#CC0000')
     patch_high = mpatches.Patch(facecolor = '#EE99EE', label = 'HIGH', edgecolor='#CC00CC')
-    ax.legend(handles = [patch_tstm, patch_mrgl, patch_slgt, patch_enh, patch_mdt, patch_high], loc = (0.01,0.01), ncol = 3, fontsize = 8)
+    
+    #Create legend:
+    ax.legend(handles = [patch_tstm, patch_mrgl, patch_slgt, patch_enh, patch_mdt, patch_high, patch_torn, patch_wind, patch_hail, patch_tor, patch_svr, patch_fld], loc = (0.01,0.01), ncol = 3, fontsize = 8)
 
     ### Add data ###
     if data != None:
@@ -287,7 +271,7 @@ class noaa_performance:
     date = date + timedelta(days=1)
 
     plt.tight_layout()
-    plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {})'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC")), fontweight = 'bold', fontsize = 14)
+    plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {} [{}])'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC"), date.strftime("%H%M D1 SPC Outlook")), fontweight = 'bold', fontsize = 14)
 
     if spath != None:
       plt.savefig('{}/{}_{}_noaa_performance.png'.format(spath, date.strftime("%Y%m%d"), domain), dpi = 300)
