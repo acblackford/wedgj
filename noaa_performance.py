@@ -135,9 +135,9 @@ class noaa_performance:
     patch_fld = mpatches.Patch(edgecolor= 'black', label = f'Flash Flood Warning ({fld_total})', facecolor='tab:green')
 
     #Add reports to legend:
-    patch_torn = mpatches.Patch.Circle(edgecolor = 'black', label = f'Tornado Reports ({torn_total})', facecolor='tab:red')
-    patch_wind = mpatches.Patch.Circle(edgecolor = 'black', label = f'Wind Reports ({wind_total})', facecolor='tab:blue')
-    patch_hail = mpatches.Patch.Circle(edgecolor= 'black', label = f'Hail Reports ({hail_total})', facecolor='tab:green')
+    patch_torn = mpatches.Circle(edgecolor = 'black', label = f'Tornado Reports ({torn_total})', facecolor='tab:red')
+    patch_wind = mpatches.Circle(edgecolor = 'black', label = f'Wind Reports ({wind_total})', facecolor='tab:blue')
+    patch_hail = mpatches.Circle(edgecolor= 'black', label = f'Hail Reports ({hail_total})', facecolor='tab:green')
    
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = 'None', label = 'TSTM', edgecolor='#55BB55')
