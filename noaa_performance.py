@@ -47,8 +47,8 @@ class noaa_performance:
     
     #Refine sbw request to line up with 12-12 UTC SPC valid times for reports and outlooks:
     sbw_start = date.replace(hour = 12, minute = 0)
-    sbw_end = date.replace(day = date.day + 1, hour = 11, minute = 59)
-        
+    sbw_end = sbw_start+timedelta(days=1)-timedelta(minutes=1)
+
     #Define each type of warning:
     tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & (warns_gdf['ISSUED'] >= sbw_start.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= sbw_end.strftime('%Y%m%d%H%M'))]
     flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= sbw_start.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= sbw_end.strftime('%Y%m%d%H%M')))]
