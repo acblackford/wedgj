@@ -48,12 +48,8 @@ class noaa_performance:
     #Refine sbw request to line up with 12-12 UTC SPC valid times for reports and outlooks:
 
     print(date)
-    sbw_start = date.replace(day = date.day + 0)    
-    sbw_start = date.replace(hour = 12)
-    sbw_start = date.replace(minute = 0)
-    sbw_end = date.replace(day = date.day + 1)   
-    sbw_end = date.replace(hour = 11)
-    sbw_end = date.replace(minute = 59)    
+    sbw_start = (date.replace(hour = 12) & date.replace(minute = 0))
+    sbw_end = (date.replace(day = date.day + 1) & date.replace(hour = 11) & date.replace(minute = 59))
     print(sbw_start)
     print(sbw_end)
     #Define each type of warning:
