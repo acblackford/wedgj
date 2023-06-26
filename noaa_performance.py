@@ -45,9 +45,9 @@ class noaa_performance:
     warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
     
     #Define each type of warning:
-    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
-    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
-    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
+    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= (date.strftime('%Y%m%d%H%M') - date.hour == 12)) & (warns_gdf['ISSUED'] <= (date.strftime('%Y%m%d%H%M') + date.hour == 12)))]
+    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= (date.strftime('%Y%m%d%H%M') - date.hour == 12)) & (warns_gdf['ISSUED'] <= (date.strftime('%Y%m%d%H%M') + date.hour == 12)))]
+    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= (date.strftime('%Y%m%d%H%M') - date.hour == 12)) & (warns_gdf['ISSUED'] <= (date.strftime('%Y%m%d%H%M') + date.hour == 12)))]
 
     # Build the SPC url:
     #SPC updates at 06, 13, 1630, 20, and 01 Z for Day 1 outlooks.
@@ -276,7 +276,7 @@ class noaa_performance:
     date = date + timedelta(days=1)
 
     plt.tight_layout()
-    plt.title('SPC Storm Reports: {} Domain\n(Valid {} - {})'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC")), fontweight = 'bold', fontsize = 14)
+    plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {})'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC")), fontweight = 'bold', fontsize = 14)
 
     if spath != None:
       plt.savefig('{}/{}_{}_storm_reports.png'.format(spath, date.strftime("%Y%m%d"), domain), dpi = 300)
