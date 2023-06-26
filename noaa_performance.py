@@ -47,14 +47,15 @@ class noaa_performance:
     
     #Refine sbw request to line up with 12-12 UTC SPC valid times for reports and outlooks:
 
-  
+    print(date)
     sbw_start = date.replace(day = date.day + 0)    
     sbw_start = date.replace(hour = 12)
     sbw_start = date.replace(minute = 0)
     sbw_end = date.replace(day = date.day + 1)   
     sbw_end = date.replace(hour = 11)
     sbw_end = date.replace(minute = 59)    
- 
+    print(sbw_start)
+    print(sbw_end)
     #Define each type of warning:
     tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & (warns_gdf['ISSUED'] >= sbw_start.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= sbw_end.strftime('%Y%m%d%H%M'))]
     flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= sbw_start.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= sbw_end.strftime('%Y%m%d%H%M')))]
@@ -130,14 +131,14 @@ class noaa_performance:
       fld_total = 0  
 
     #Add sbw to legend:
-    patch_tor = mpatches.Patch(edgecolor = 'black', label = f'Tornado Warning ({tor_total})', facecolor='tab:red')
-    patch_svr = mpatches.Patch(edgecolor = 'black', label = f'Severe Thunderstorm Warning ({svr_total})', facecolor='goldenrod')
-    patch_fld = mpatches.Patch(edgecolor= 'black', label = f'Flash Flood Warning ({fld_total})', facecolor='tab:green')
+    patch_tor = mpatches.Patch(edgecolor = 'black', label = f'Tornado Warning ({tor_total})', facecolor='tab:red', alpha = 0.5)
+    patch_svr = mpatches.Patch(edgecolor = 'black', label = f'Severe Thunderstorm Warning ({svr_total})', facecolor='goldenrod', alpha = 0.5)
+    patch_fld = mpatches.Patch(edgecolor= 'black', label = f'Flash Flood Warning ({fld_total})', facecolor='tab:green', alpha = 0.5)
 
     #Add reports to legend:
-    patch_torn = mpatches.Circle((0.5, 0.5), edgecolor = 'black', label = f'Tornado Reports ({torn_total})', facecolor='tab:red')
-    patch_wind = mpatches.Circle((0.5, 0.5), edgecolor = 'black', label = f'Wind Reports ({wind_total})', facecolor='tab:blue')
-    patch_hail = mpatches.Circle((0.5, 0.5), edgecolor= 'black', label = f'Hail Reports ({hail_total})', facecolor='tab:green')
+    patch_torn = mpatches.Patch(edgecolor = 'black', label = f'Tornado Reports ({torn_total})', facecolor='tab:red')
+    patch_wind = mpatches.Patch(edgecolor = 'black', label = f'Wind Reports ({wind_total})', facecolor='tab:blue')
+    patch_hail = mpatches.Patch(edgecolor= 'black', label = f'Hail Reports ({hail_total})', facecolor='tab:green')
    
     #Add categorical legend:
     patch_tstm  = mpatches.Patch(facecolor = 'None', label = 'TSTM', edgecolor='#55BB55')
@@ -220,30 +221,30 @@ class noaa_performance:
     #Add reports:
     if report_type == 'All':
       try:
-        ax.scatter(hail_reports['Lon'], hail_reports['Lat'], color = 'tab:green', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Hail Reports', zorder = 10)
+        ax.scatter(hail_reports['Lon'], hail_reports['Lat'], color = 'tab:green', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Hail Reports', zorder = 10)
       except:
         pass
       try:
-        ax.scatter(wind_reports['Lon'], wind_reports['Lat'], color = 'tab:blue', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Wind Reports', zorder = 10)
+        ax.scatter(wind_reports['Lon'], wind_reports['Lat'], color = 'tab:blue', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Wind Reports', zorder = 10)
       except:
         pass
       try:
-        ax.scatter(tornado_reports['Lon'], tornado_reports['Lat'], color = 'tab:red', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Tornado Reports', zorder = 10)
+        ax.scatter(tornado_reports['Lon'], tornado_reports['Lat'], color = 'tab:red', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Tornado Reports', zorder = 10)
       except:
         pass
     elif report_type == 'Tornado':
       try:
-        ax.scatter(tornado_reports['Lon'], tornado_reports['Lat'], color = 'tab:red', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Tornado Reports', zorder = 10)
+        ax.scatter(tornado_reports['Lon'], tornado_reports['Lat'], color = 'tab:red', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Tornado Reports', zorder = 10)
       except:
         pass
     elif report_type == 'Wind':
       try:
-        ax.scatter(wind_reports['Lon'], wind_reports['Lat'], color = 'tab:blue', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Wind Reports', zorder = 10)
+        ax.scatter(wind_reports['Lon'], wind_reports['Lat'], color = 'tab:blue', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Wind Reports', zorder = 10)
       except:
         pass
     elif report_type == 'Hail':
       try:
-        ax.scatter(hail_reports['Lon'], hail_reports['Lat'], color = 'tab:green', linewidths = 0.5, edgecolor = 'black', s = 20, transform = ccrs.crs.PlateCarree(), label = 'Hail Reports', zorder = 10)
+        ax.scatter(hail_reports['Lon'], hail_reports['Lat'], color = 'tab:green', linewidths = 0.5, edgecolor = 'black', s = 15, transform = ccrs.crs.PlateCarree(), label = 'Hail Reports', zorder = 10)
       except:
         pass
     else:
