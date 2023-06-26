@@ -45,9 +45,9 @@ class noaa_performance:
     warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
     
     #Define each type of warning:
-    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
-    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
-    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
+    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
+    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
+    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour == 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour == 12))]
 
     # Build the SPC url:
     #SPC updates at 06, 13, 1630, 20, and 01 Z for Day 1 outlooks.
