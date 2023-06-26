@@ -38,16 +38,16 @@ class noaa_performance:
     wind_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_wind.csv')
     hail_reports = pd.read_csv(f'https://spc.noaa.gov/climo/reports/{date.strftime("%y%m%d")}_rpts_hail.csv')
 
-    link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(start_date.strftime("%Y"))
+    link = "https://mesonet.agron.iastate.edu/pickup/wwa/{}_tsmf_sbw.zip".format(date.strftime("%Y"))
     warns = gpd.read_file(link)
     warns_gdf = gpd.GeoDataFrame(warns, geometry=warns['geometry'])
     warns_gdf.to_crs(4326)
     warns_gdf['ISSUED'] = warns_gdf['ISSUED'].astype('datetime64')
     
     #Define each type of warning:
-    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & (warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M'))]
-    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M')))]
-    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= start_date.strftime('%Y%m%d%H%M')) & (warns_gdf['ISSUED'] <= end_date.strftime('%Y%m%d%H%M')))]
+    tor_warns = warns_gdf[(warns_gdf['PHENOM'] == 'TO') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
+    flood_warns = warns_gdf[(warns_gdf['PHENOM'] == 'FF') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
+    svr_warns = warns_gdf[(warns_gdf['PHENOM'] == 'SV') & (warns_gdf['STATUS'] == 'NEW') & ((warns_gdf['ISSUED'] >= date.strftime('%Y%m%d%H%M') - date.hour = 12) & (warns_gdf['ISSUED'] <= date.strftime('%Y%m%d%H%M') + date.hour = 12))]
 
     # Build the SPC url:
     #SPC updates at 06, 13, 1630, 20, and 01 Z for Day 1 outlooks.
@@ -273,10 +273,10 @@ class noaa_performance:
     wedgj_utils.add_geog_ref(self, ax)
 
     #Get end of valid time:
-    end_date = date + timedelta(days=1)
+    date = date + timedelta(days=1)
 
     plt.tight_layout()
-    plt.title('SPC Storm Reports: {} Domain\n(Valid {} - {})'.format(domain, date.strftime("%Y%m%d 1200 UTC"), end_date.strftime("%Y%m%d 1159 UTC")), fontweight = 'bold', fontsize = 14)
+    plt.title('SPC Storm Reports: {} Domain\n(Valid {} - {})'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC")), fontweight = 'bold', fontsize = 14)
 
     if spath != None:
       plt.savefig('{}/{}_{}_storm_reports.png'.format(spath, date.strftime("%Y%m%d"), domain), dpi = 300)
