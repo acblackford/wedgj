@@ -152,33 +152,7 @@ class noaa_performance:
       handles, labels = ax.get_legend_handles_labels()
       ax.legend(handles, labels, loc='lower right', ncol=1)
 
-    
-    ### Categorical SPC Outlook ###
-    try:
-      cat_gdf.loc[[0],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[0],'stroke'])
-    except:
-      pass
-    try:
-      cat_gdf.loc[[1],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[1],'stroke'])
-    except:
-      pass
-    try:
-      cat_gdf.loc[[2],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[2],'stroke'])
-    except:
-      pass
-    try:
-      cat_gdf.loc[[3],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[3],'stroke'])
-    except:
-      pass
-    try:
-      cat_gdf.loc[[4],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[4],'stroke'])
-    except:
-      pass
-    try:
-      cat_gdf.loc[[5],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[5],'stroke'])
-    except:
-      pass
-
+ 
     #Add warnings:
     if warn_type == 'All':  
       try:
@@ -210,6 +184,32 @@ class noaa_performance:
         pass
     else:
       print('Invalid warn_type input.')
+      
+    #Add Categorical SPC Outlook:
+    try:
+      cat_gdf.loc[[0],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[0],'stroke'])
+    except:
+      pass
+    try:
+      cat_gdf.loc[[1],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[1],'stroke'])
+    except:
+      pass
+    try:
+      cat_gdf.loc[[2],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[2],'stroke'])
+    except:
+      pass
+    try:
+      cat_gdf.loc[[3],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[3],'stroke'])
+    except:
+      pass
+    try:
+      cat_gdf.loc[[4],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[4],'stroke'])
+    except:
+      pass
+    try:
+      cat_gdf.loc[[5],'geometry'].plot(ax = ax, color = 'None', edgecolor = cat_gdf.loc[[5],'stroke'])
+    except:
+      pass
 
     #Add reports:
     if report_type == 'All':
@@ -259,9 +259,6 @@ class noaa_performance:
 
     #Add cartopy boundaries:
     wedgj_utils.add_geog_ref(self, ax)
-
-    #Get end of valid time:
-    date = date + timedelta(days=1)
 
     plt.tight_layout()
     plt.title('SPC/NWS Event Performance: {} Domain\n(Valid {} - {} [{}])'.format(domain, date.strftime("%Y%m%d 1200 UTC"), date.strftime("%Y%m%d 1159 UTC"), date.strftime("%H%M D1 SPC Outlook")), fontweight = 'bold', fontsize = 14)
