@@ -185,7 +185,9 @@ def snow_cmap(self):
                     ]
     self.snow_cmap = mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')
     self.snow_norm = mcolors.BoundaryNorm(snow_clevs, snow_cmap.N)
-
+    snow_table = {}
+    return snow_table
+    
 ######--------- ice_cmap ---------######
 # ice_cmap defines a custom colormap   # 
 # for the winter class to utilize      #
@@ -193,7 +195,7 @@ def snow_cmap(self):
 ########################################
 
 def ice_cmap(self):
-    self.ice_clevs = [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0]
+    ice_clevs = [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0]
     
     ice_cmap_data = ['#FEBCFE', # T-0.1"
                     '#FF67FF', # 0.1-0.25"
@@ -202,7 +204,8 @@ def ice_cmap(self):
                     '#580658', # 0.75-1.0"
                     '#179AD4', # 1.0-1.5"
                     '#21D8EC', # 1.5"+
-                    
                     ]
-    self.ice_cmap = mcolors.ListedColormap(ice_cmap_data, 'acc_ice')
-    self.ice_norm = mcolors.BoundaryNorm(ice_clevs, ice_cmap.N)
+    
+    ice_table = {'ice_clevs': [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0], 'ice_cmap': mcolors.ListedColormap(ice_cmap_data, 'acc_ice'),
+                 'ice_norm': mcolors.BoundaryNorm(ice_clevs, ice_cmap.N)}
+    return ice_table
