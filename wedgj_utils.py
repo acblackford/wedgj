@@ -169,7 +169,7 @@ def plot_al_cities(self, ax):
 ########################################
 
 def snow_cmap(self):
-    self.snow_clevs = [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54]
+    snow_clevs = [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54]
 
     snow_cmap_data = ['#56efff', # T-1
                     '#15AAD3', # 1-3
@@ -181,11 +181,8 @@ def snow_cmap(self):
                     '#FFB8FF', # 24-36
                     '#B9E2F8', # 36-48
                     '#D5FFFE', # 48+
-                    
                     ]
-    self.snow_cmap = mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')
-    self.snow_norm = mcolors.BoundaryNorm(snow_clevs, snow_cmap.N)
-    snow_table = {}
+    snow_table = {'snow_clevs': [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54], 'snow_cmap': mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')}
     return snow_table
     
 ######--------- ice_cmap ---------######
