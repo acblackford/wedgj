@@ -120,3 +120,7 @@ class winter:
             plt.title(f'Total Accreted Ice (in)\n{domain} Region', loc = 'left', fontweight = 'bold', fontsize = 10)
             plt.title('Valid: {}\n{} HRRR F{:03d}'.format(ad+timedelta(hours=i),ad.strftime("%Y%m%d %HZ"),i), loc = 'right', fontsize = 10)
             plt.savefig('{}f{:03d}.png'.format(spath, i))
+    
+    except Exception as err:
+        print(err)
+        
