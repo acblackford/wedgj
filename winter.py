@@ -253,7 +253,7 @@ class winter:
             snow_table = wedgj_utils.snow_cmap(self)
             
             barb_int = 16
-            snowcf = ax.contourf(lons, lats, snow_type_list[{snow_type}], cmap=snow_table['snow_cmap'], levels = snow_table['snow_clevs'], norm=mcolors.BoundaryNorm(snow_table['snow_clevs'], snow_table['snow_cmap'].N), transform = ccrs.crs.PlateCarree(), extend = 'max')
+            snowcf = ax.contourf(lons, lats, snow_type_list[snow_type], cmap=snow_table['snow_cmap'], levels = snow_table['snow_clevs'], norm=mcolors.BoundaryNorm(snow_table['snow_clevs'], snow_table['snow_cmap'].N), transform = ccrs.crs.PlateCarree(), extend = 'max')
 
             #Add counties if not CONUS:
             if domain != 'CONUS':
@@ -274,7 +274,7 @@ class winter:
             
             cbar = plt.colorbar(snowcf, orientation = 'horizontal', label = 'Accumulated Snowfall (in)', extendrect = True, aspect = 65, pad = 0)
             cbar.set_ticks((0, 1, 3, 5, 8, 12, 18, 24, 36, 48, 60))
-            plt.title(f'{snow_type_title[{snow_type}]} Accumulated Snowfall (in)\n{domain} Region', loc = 'left', fontweight = 'bold', fontsize = 10)
+            plt.title(f'{snow_type_title[snow_type]} Accumulated Snowfall (in)\n{domain} Region', loc = 'left', fontweight = 'bold', fontsize = 10)
             plt.title('Valid: {}\n{} HRRR F{:03d}'.format(ad+timedelta(hours=i),ad.strftime("%Y%m%d %HZ"),i), loc = 'right', fontsize = 10)
             plt.savefig('{}f{:03d}.png'.format(spath, i))
             
