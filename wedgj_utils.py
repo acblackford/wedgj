@@ -206,6 +206,5 @@ def ice_cmap(self):
                     '#21D8EC', # 1.5"+
                     ]
     
-    ice_table = {'ice_clevs': [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0], 'ice_cmap': mcolors.ListedColormap(ice_cmap_data, 'acc_ice'),
-                 'ice_norm': mcolors.BoundaryNorm(ice_clevs, ice_cmap.N)}
+    ice_table = {'ice_clevs': [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0], 'ice_cmap': mcolors.ListedColormap(ice_cmap_data, 'acc_ice')}
     return ice_table
