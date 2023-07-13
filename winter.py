@@ -104,9 +104,11 @@ class winter:
             except:
               ax.set_extent(extent_table['CONUS'])
               print('Invalid Domain Input. Setting extent to CONUS.')
-
+            
+            ice_table = wedgj_utils.ice_cmap(self)
+            
             barb_int = 16
-            icecf = ax.contourf(lons, lats, ice, cmap=wedgj_utils.ice_cmap.ice_cmap, levels = wedgj_utils.ice_cmap.ice_clevs, norm=wedgj_utils.ice_cmap.ice_norm, transform = ccrs.crs.PlateCarree(), extend = 'max')
+            icecf = ax.contourf(lons, lats, ice, cmap=ice_table['ice_cmap'], levels = ice_table['ice_clevs'], norm=ice_table['ice_norm'], transform = ccrs.crs.PlateCarree(), extend = 'max')
             ax.add_feature(cfeature.STATES, lw = 0.5)
             ax.add_feature(cfeature.BORDERS, lw = 0.5)
             ax.add_feature(cfeature.COASTLINE, lw = 0.75)
@@ -121,3 +123,5 @@ class winter:
     except Exception as err:
         print(err)
         
+  def hrrr_snow(self, spath = None, domain = 'CONUS', type = 'kuchera'):
+    exit
