@@ -235,6 +235,9 @@ class winter:
             snow_type = {'kuchera':kuchera, '10:1': snow, 'model': model_snow}
             snow_type_title = {'kuchera': 'Kuchera Method', '10:1': '10:1', 'model': 'Model Ratio'}
             
+            #Plot Snow Accumulation:
+            figsize_table = wedgj_utils.figsize_table(self)
+
             #Make figure:
             fig, ax = plt.subplots(figsize = figsize_table[domain], subplot_kw = {'projection' : ccrs.crs.PlateCarree()})
 
