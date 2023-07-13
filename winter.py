@@ -119,4 +119,4 @@ class winter:
             cbar.set_ticks((0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0))
             plt.title(f'Total Accreted Ice (in)\n{domain} Region', loc = 'left', fontweight = 'bold', fontsize = 10)
             plt.title('Valid: {}\n{} HRRR F{:03d}'.format(ad+timedelta(hours=i),ad.strftime("%Y%m%d %HZ"),i), loc = 'right', fontsize = 10)
-            plt.savefig(f'{spath}f{:03d}.png'.format(i))
+            plt.savefig('{}f{:03d}.png'.format(spath, i))
