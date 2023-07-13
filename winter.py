@@ -7,6 +7,7 @@ from  datetime import datetime, timedelta
 from wedgj import wedgj_utils
 import os
 import pygrib
+import matplotlib.colors as mcolors
 
 ###########################################
 #                                         #
