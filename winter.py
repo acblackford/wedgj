@@ -208,29 +208,25 @@ class winter:
 
             #Calculate 10:1 Ratio Snowfall Accumulation:
             snow = data["ASNOW"+"surface"] * 10 * 0.04 /0.01
-                        
+
+            #Calculate Model-Ratio Snowfall Accumulation:
+            model_snow = data["ASNOW"+"surface"] * 0.04  
+ 
             #Calculate Kuchera Method Snowfall Accumulation:
             temp = np.array([data["TMP"+"2 m above ground"],data["TMP"+"850 mb"],data["TMP"+"700 mb"],data["TMP"+"500 mb"]])
             
             kuchera = np.zeros(lons.shape)
 
             tmax = np.nanmax(temp, axis = 0)
-            
-            for t in range(temp.shape[0]):
-                print(temp.mean(), temp.max(), temp.min(), t)
-            
+                        
             for k in range(kuchera.shape[1]):
                 for j in range(kuchera.shape[0]):
                     if tmax[j,k] > 271.16:
                         kuchera[j,k] = 12 + 2*(271.16 - tmax[j,k])
                     else:
                         kuchera[j,k] = 12 + (271.16 - tmax[j,k])
-
-            print(np.nanmean(kuchera), np.nanmax(kuchera), np.nanmin(kuchera))
             
             kuchera = kuchera * ((snow)/10)
-            print(np.nanmean(snow/10.0), np.nanmax(snow/10.0), np.nanmin(snow/10.0))
-            print(np.nanmean(kuchera), np.nanmax(kuchera), np.nanmin(kuchera))
             
             kuchera[kuchera < 0.01] = np.nan        
             snow[snow < 0.01] = np.nan
