@@ -9,6 +9,7 @@ import geopandas as gpd
 import matplotlib.patches as mpatches
 import pandas as pd
 import warnings
+import matplotlib.colors as mcolors
 
 ######------ extent_table ------######
 # extent_table returns a list of     # 
@@ -161,4 +162,47 @@ def plot_al_cities(self, ax):
     for i in range(len(al_x)):
       ax.text(al_x[i]+0.1, al_y[i]+0.1, al_cities_labels[i], horizontalalignment='left', verticalalignment='center', transform = ccrs.crs.PlateCarree(), fontweight = 'bold', font = 'Liberation Serif', fontsize = 14)
 
+######--------- snow_cmap --------######
+# snow_cmap defines a custom colormap  # 
+# for the winter class to utilize      #
+# in mapping functions                 #
+########################################
 
+def snow_cmap(self):
+    snow_clevs = [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54]
+
+    snow_cmap_data = ['#56efff', # T-1
+                    '#15AAD3', # 1-3
+                    '#18849F', # 3-5
+                    '#B3A2FE', # 5-8
+                    '#975FFF', # 8-12
+                    '#662FAD', # 12-18
+                    '#FF50A6', # 18-24
+                    '#FFB8FF', # 24-36
+                    '#B9E2F8', # 36-48
+                    '#D5FFFE', # 48+
+                    
+                    ]
+    snow_cmap = mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')
+    snow_norm = mcolors.BoundaryNorm(snow_clevs, snow_cmap.N)
+
+######--------- ice_cmap ---------######
+# ice_cmap defines a custom colormap   # 
+# for the winter class to utilize      #
+# in mapping functions                 #
+########################################
+
+def ice_cmap(self):
+    ice_clevs = [0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0]
+    
+    ice_cmap_data = ['#FEBCFE', # T-0.1"
+                    '#FF67FF', # 0.1-0.25"
+                    '#D639D6', # 0.25-0.5"
+                    '#A219A2', # 0.5-0.75"
+                    '#580658', # 0.75-1.0"
+                    '#179AD4', # 1.0-1.5"
+                    '#21D8EC', # 1.5"+
+                    
+                    ]
+    ice_cmap = mcolors.ListedColormap(ice_cmap_data, 'acc_ice')
+    ice_norm = mcolors.BoundaryNorm(ice_clevs, ice_cmap.N)
