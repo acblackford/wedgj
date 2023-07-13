@@ -108,7 +108,7 @@ class winter:
             ice_table = wedgj_utils.ice_cmap(self)
             
             barb_int = 16
-            icecf = ax.contourf(lons, lats, ice, cmap=ice_table['ice_cmap'], levels = ice_table['ice_clevs'], norm=ice_table['ice_norm'], transform = ccrs.crs.PlateCarree(), extend = 'max')
+            icecf = ax.contourf(lons, lats, ice, cmap=ice_table['ice_cmap'], levels = ice_table['ice_clevs'], norm= mcolors.BoundaryNorm(ice_table['ice_clevs'], ice_table['ice_cmap'].N), transform = ccrs.crs.PlateCarree(), extend = 'max')
             ax.add_feature(cfeature.STATES, lw = 0.5)
             ax.add_feature(cfeature.BORDERS, lw = 0.5)
             ax.add_feature(cfeature.COASTLINE, lw = 0.75)
