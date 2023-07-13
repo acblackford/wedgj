@@ -110,9 +110,23 @@ class winter:
             
             barb_int = 16
             icecf = ax.contourf(lons, lats, ice, cmap=ice_table['ice_cmap'], levels = ice_table['ice_clevs'], norm= mcolors.BoundaryNorm(ice_table['ice_clevs'], ice_table['ice_cmap'].N), transform = ccrs.crs.PlateCarree(), extend = 'max')
-            ax.add_feature(cfeature.STATES, lw = 0.5)
-            ax.add_feature(cfeature.BORDERS, lw = 0.5)
-            ax.add_feature(cfeature.COASTLINE, lw = 0.75)
+            
+            #Add counties if not CONUS:
+            if domain != 'CONUS':
+              wedgj_utils.plot_counties(self, ax)
+            
+            #Add cities to state plots:
+            if domain == 'Ohio':
+                wedgj_utils.plot_oh_cities(self, ax)
+            elif domain == 'Indiana':
+                wedgj_utils.plot_in_cities(self, ax)
+            elif domain == 'Alabama':
+                wedgj_utils.plot_al_cities(self, ax)
+            else:
+                pass
+
+            #Add cartopy boundaries:
+            wedgj_utils.add_geog_ref(self, ax)
 
             cbar = plt.colorbar(icecf, orientation = 'horizontal', label = 'Accreted Ice (in)', extendrect = True, aspect = 65, pad = 0)
 
