@@ -4,12 +4,9 @@ import matplotlib.pyplot as plt
 import cartopy as ccrs
 import cartopy.feature as cfeature
 from  datetime import datetime, timedelta
-import cartopy.io.shapereader as shpreader
-import geopandas as gpd 
-import matplotlib.patches as mpatches
-import pandas as pd
-import warnings
 from wedgj import wedgj_utils
+import os
+import pygrib
 
 ###########################################
 #                                         #
