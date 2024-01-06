@@ -169,20 +169,32 @@ def plot_al_cities(self, ax):
 ########################################
 
 def snow_cmap(self):
-    snow_clevs = [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54]
+    snow_clevs = [0, 1, 3, 5, 8, 12, 18, 24, 36, 48, 54]
 
-    snow_cmap_data = ['#56efff', # T-1
-                    '#15AAD3', # 1-3
-                    '#18849F', # 3-5
-                    '#B3A2FE', # 5-8
-                    '#975FFF', # 8-12
-                    '#662FAD', # 12-18
-                    '#FF50A6', # 18-24
-                    '#FFB8FF', # 24-36
-                    '#B9E2F8', # 36-48
-                    '#D5FFFE', # 48+
-                    ]
-    snow_table = {'snow_clevs': [0, 1, 3, 5, 8, 12, 18 ,24, 36, 48, 54], 'snow_cmap': mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')}
+    snow_cmap_data = ['#56efff',  # T-1
+                      '#15AAD3',  # 1-3
+                      '#18849F',  # 3-5
+                      '#B3A2FE',  # 5-8
+                      '#975FFF',  # 8-12
+                      '#662FAD',  # 12-18
+                      '#FF50A6',  # 18-24
+                      '#FFB8FF',  # 24-36
+                      '#B9E2F8',  # 36-48
+                      '#D5FFFE',  # 48+
+                      ]
+
+    # Define a custom colormap with transparency for values less than 0.1
+    snow_cmap_data_with_transparency = ['#56efff', '#15AAD3', '#18849F', '#B3A2FE', '#975FFF',
+                                        '#662FAD', '#FF50A6', '#FFB8FF', '#B9E2F8', '#D5FFFE']
+
+    snow_cmap_with_transparency = mcolors.ListedColormap(snow_cmap_data_with_transparency, 'acc_snowfall')
+
+    # Create a colormap that sets values less than 0.1 to be transparent
+    snow_cmap = mcolors.ListedColormap(snow_cmap_data, 'acc_snowfall')
+    snow_cmap.set_under('none')
+
+    snow_table = {'snow_clevs': snow_clevs, 'snow_cmap': snow_cmap}
+
     return snow_table
     
 ######--------- ice_cmap ---------######
