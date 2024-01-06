@@ -169,7 +169,7 @@ def plot_al_cities(self, ax):
 ########################################
 
 def snow_cmap(self):
-    snow_clevs = [0, 1, 3, 5, 8, 12, 18, 24, 36, 48, 54]
+    snow_clevs = [0.1, 1, 3, 5, 8, 12, 18, 24, 36, 48, 54]
 
     snow_cmap_data = ['#56efff',  # T-1
                       '#15AAD3',  # 1-3
